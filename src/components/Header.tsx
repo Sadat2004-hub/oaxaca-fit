@@ -23,7 +23,8 @@ export default function Header() {
             alt="Oaxaca Fit Logo"
             width={200}
             height={60}
-            style={{ height: '60px', width: 'auto' }}
+            className="header-logo-image"
+            style={{ width: 'auto' }}
             priority
           />
         </Link>

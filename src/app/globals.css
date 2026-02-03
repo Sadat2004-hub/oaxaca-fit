@@ -120,22 +120,53 @@ button,
 
 @media (max-width: 768px) {
   .hero-title {
-    font-size: 2.5rem !important;
+    font-size: 2rem !important;
+    line-height: 1.2;
+  }
+
+  .header-logo-image {
+    height: 40px !important;
+    width: auto !important;
+  }
+
+  .header-container {
+    padding: 0 10px !important;
   }
 
   .search-container {
     flex-direction: column;
     border-radius: 20px !important;
+    padding: 15px !important;
+    width: 90% !important;
+    margin: 0 auto !important;
   }
 
   .search-input {
     border-left: none !important;
     border-bottom: 1px solid #ddd;
     width: 100%;
+    margin-bottom: 10px;
   }
 
   .search-button {
     width: 100%;
-    margin-top: 10px;
+    margin-top: 5px;
   }
+
+  .listing-content-container {
+    padding: 0 20px !important;
+  }
+}
+
+.service-tag {
+  background: transparent;
+  padding: 8px 15px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  border: 1px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  font-weight: 500;
 }

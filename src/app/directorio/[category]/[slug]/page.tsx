@@ -55,7 +55,7 @@ export default async function ListingPage({ params }: { params: Promise<{ catego
 
             <div className="container listing-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '40px', padding: '40px 0' }}>
                 {/* Main Content */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
+                <div className="listing-content-container" style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
 
                     {/* Gallery Carousel */}
                     <div>
@@ -96,13 +96,9 @@ export default async function ListingPage({ params }: { params: Promise<{ catego
                         <h2 style={{ marginBottom: '20px' }}>Servicios y Comodidades</h2>
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '15px' }}>
                             {listing.services.map(s => (
-                                <span key={s} style={{
-                                    background: 'var(--surface)',
-                                    padding: '8px 20px',
-                                    borderRadius: '50px',
-                                    fontSize: '0.9rem',
-                                    border: '1px solid var(--border)'
-                                }}>✨ {s}</span>
+                                <span key={s} className="service-tag">
+                                    <span style={{ color: 'var(--primary)' }}>✔</span> {s}
+                                </span>
                             ))}
                         </div>
                     </div>
@@ -168,7 +164,7 @@ export default async function ListingPage({ params }: { params: Promise<{ catego
             {/* Interlinking */}
             <section style={{ padding: '60px 0', borderTop: '1px solid var(--border)', background: 'var(--surface)' }}>
                 <div className="container">
-                    <h2 style={{ marginBottom: '30px' }}>Negocios similares en esta zona</h2>
+                    <h2 style={{ marginBottom: '30px' }}>Negocios Destacados</h2>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '20px' }}>
                         <div style={{ background: 'white', padding: '20px', borderRadius: 'var(--radius)', border: '1px solid var(--border)' }}>
                             <Link href={`/directorio/${listing.categorySlug}/${listing.slug}`}>
