@@ -13,9 +13,34 @@ export type Listing = {
     openingHours: string;
     location: { lat: number; lng: number };
     mapEmbedUrl?: string;
+    website?: string;
 };
 
 export const listings: Listing[] = [
+    {
+        id: '6',
+        name: 'Black CF Crossfit',
+        slug: 'black-cf-crossfit',
+        category: 'CrossFit & Funcional',
+        categorySlug: 'crossfit',
+        address: 'Miguel Hidalgo 1412, Centro, 68000 Oaxaca de Juárez, Oax.',
+        whatsapp: '529513519853',
+        website: 'http://www.blackoaxaca.com/',
+        image: '/images/black-cf-crossfit/black-cf-crossfit.jpg',
+        gallery: [
+            '/images/black-cf-crossfit/black-cf-crossfit.jpg',
+            '/images/black-cf-crossfit/black-cf-crossfit1.jpg',
+            '/images/black-cf-crossfit/black-cf-crossfit2.jpg',
+            '/images/black-cf-crossfit/black-cf-crossfit3.jpg',
+            '/images/black-cf-crossfit/black-cf-crossfit4.jpg',
+            '/images/black-cf-crossfit/black-cf-crossfit5.jpg',
+        ],
+        description: 'En Black CF nos enfocamos en el CrossFit real. Comunidad, fuerza y resultados. Visita nuestro sitio web para más información.',
+        services: ['CrossFit', 'Entrenamiento Funcional'],
+        openingHours: 'Lun-Vie: 6:00 - 22:00, Sáb: 7:00 - 10:00',
+        location: { lat: 17.061, lng: -96.725 },
+        mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15256.540787947439!2d-96.74222661713857!3d17.066038365205042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c72246c6a89f79%3A0x15d0aa61fb67ff3e!2sBLACK%20CF%20Crossfit!5e0!3m2!1ses!2smx!4v1770242508167!5m2!1ses!2smx'
+    },
     {
         id: '1',
         name: 'Twister Crossfit Gym',

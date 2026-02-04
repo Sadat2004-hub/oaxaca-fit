@@ -149,6 +149,25 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                         <h3 style={{ marginBottom: '20px' }}>Horarios</h3>
                         <p style={{ marginBottom: '30px', color: 'var(--text-light)' }}>{listing.openingHours}</p>
 
+                        {listing.website && (
+                            <Link href={listing.website} target="_blank" style={{
+                                background: 'white',
+                                color: 'var(--text)',
+                                border: '2px solid var(--border)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                padding: '15px',
+                                borderRadius: 'var(--radius)',
+                                fontSize: '1rem',
+                                fontWeight: '700',
+                                textAlign: 'center',
+                                marginBottom: '15px'
+                            }}>
+                                🌐 Visitar Sitio Web
+                            </Link>
+                        )}
+
                         <Link href={waLink} target="_blank" style={{
                             background: '#25D366',
                             color: 'white',
