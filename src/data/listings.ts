@@ -91,6 +91,29 @@ export const listings: Listing[] = [
         mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15256.540787947439!2d-96.74222661713857!3d17.066038365205042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c723147c316a11%3A0x286b4bf9c9216538!2sFearless%20Cross%20-%20Training!5e0!3m2!1ses!2smx!4v1770242977490!5m2!1ses!2smx'
     },
     {
+        id: '8',
+        name: 'Estudio de Entrenamiento Athletic',
+        slug: 'athletic-crossfit',
+        category: 'CrossFit & Funcional',
+        categorySlug: 'crossfit',
+        address: 'Felipe Carrillo Puerto 701, Reforma Agraria, 71233 Santa Cruz Xoxocotlán, Oax.',
+        whatsapp: '529511352827',
+        image: '/images/athletic-crossfit/athletic-crossfit.jpg',
+        gallery: [
+            '/images/athletic-crossfit/athletic-crossfit.jpg',
+            '/images/athletic-crossfit/athletic-crossfit1.jpg',
+            '/images/athletic-crossfit/athletic-crossfit2.jpg',
+            '/images/athletic-crossfit/athletic-crossfit4.jpg',
+            '/images/athletic-crossfit/athletic-crossfit5.jpg',
+        ],
+        description: 'Estudio especializado en entrenamiento funcional y CrossFit. Instalaciones de primer nivel y ambiente motivador para alcanzar tus objetivos.',
+        services: ['CrossFit', 'Entrenamiento Funcional'],
+        openingHours: 'Lun-Vie: 6:00 - 22:00, Sáb: 7:00 - 18:00',
+        location: { lat: 17.036, lng: -96.732 },
+        rating: 4.2,
+        mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15256.540787947439!2d-96.74222661713857!3d17.066038365205042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c723ffac7eb783%3A0xfd8c89ea17c520ad!2sEstudio%20de%20entrenamiento%20Athletic!5e0!3m2!1ses!2smx!4v1770243302832!5m2!1ses!2smx'
+    },
+    {
         id: '2',
         name: 'CrossFit Oaxaca',
         slug: 'crossfit-oaxaca',
