@@ -1,3 +1,4 @@
+
 import { listings } from '@/data/listings';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -5,14 +6,13 @@ import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
     return listings.map((l) => ({
-        category: l.categorySlug,
         slug: l.slug,
     }));
 }
 
-export default async function ListingPage({ params }: { params: Promise<{ category: string, slug: string }> }) {
-    const { category, slug } = await params;
-    const listing = listings.find(l => l.slug === slug && l.categorySlug === category);
+export default async function ListingPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+    const listing = listings.find(l => l.slug === slug);
 
     if (!listing) return notFound();
 
@@ -29,7 +29,7 @@ export default async function ListingPage({ params }: { params: Promise<{ catego
             "addressLocality": "Oaxaca",
             "addressCountry": "MX"
         },
-        "url": `https://oaxacafit.com/directorio/${listing.categorySlug}/${listing.slug}`,
+        "url": `https://oaxacafit.com/${listing.slug}`,
         "telephone": listing.whatsapp
     };
 
@@ -43,8 +43,8 @@ export default async function ListingPage({ params }: { params: Promise<{ catego
             {/* Header Info */}
             <section style={{ padding: '40px 0', borderBottom: '1px solid var(--border)' }}>
                 <div className="container">
-                    <Link href="/directorio" style={{ color: 'var(--text-light)', fontSize: '14px', marginBottom: '10px', display: 'block' }}>
-                        &larr; Volver al directorio
+                    <Link href={`/directorio/${listing.categorySlug}`} style={{ color: 'var(--text-light)', fontSize: '14px', marginBottom: '10px', display: 'block' }}>
+                        &larr; Volver a {listing.category}
                     </Link>
                     <h1 style={{ fontSize: '3rem', fontWeight: '900', marginBottom: '10px' }}>{listing.name}</h1>
                     <p style={{ fontSize: '1.2rem', color: 'var(--text-light)' }}>
@@ -111,13 +111,26 @@ export default async function ListingPage({ params }: { params: Promise<{ catego
                             height: '400px',
                             background: '#eee',
                             borderRadius: 'var(--radius)',
+                            overflow: 'hidden',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
                             color: '#666',
                             border: '1px solid var(--border)'
                         }}>
-                            [📍 Mapa Interactivo - Oaxaca, México]
+                            {listing.mapEmbedUrl ? (
+                                <iframe
+                                    src={listing.mapEmbedUrl}
+                                    width="100%"
+                                    height="100%"
+                                    style={{ border: 0 }}
+                                    allowFullScreen={true}
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                />
+                            ) : (
+                                <span>[📍 Mapa no disponible]</span>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -167,7 +180,7 @@ export default async function ListingPage({ params }: { params: Promise<{ catego
                     <h2 style={{ marginBottom: '30px' }}>Negocios Destacados</h2>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '20px' }}>
                         <div style={{ background: 'white', padding: '20px', borderRadius: 'var(--radius)', border: '1px solid var(--border)' }}>
-                            <Link href={`/directorio/${listing.categorySlug}/${listing.slug}`}>
+                            <Link href={`/${listing.slug}`}>
                                 <h4 style={{ color: 'var(--primary)' }}>{listing.name}</h4>
                                 <p style={{ fontSize: '12px', color: 'var(--text-light)' }}>{listing.category}</p>
                             </Link>

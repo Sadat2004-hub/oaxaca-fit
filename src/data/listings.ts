@@ -12,6 +12,7 @@ export type Listing = {
     services: string[];
     openingHours: string;
     location: { lat: number; lng: number };
+    mapEmbedUrl?: string;
 };
 
 export const listings: Listing[] = [
@@ -31,7 +32,8 @@ export const listings: Listing[] = [
         description: 'Centro líder en Oaxaca con calificación 4.9. Ofrecemos CrossFit puro, entrenamiento funcional, yoga y asesoría nutricional. ¡Únete a la comunidad más fuerte!',
         services: ['CrossFit', 'Funcional', 'Yoga', 'Nutrición', 'Regaderas'],
         openingHours: 'Lun-Vie: 6:00 - 22:00, Sáb: 8:00 - 14:00',
-        location: { lat: 17.065, lng: -96.723 }
+        location: { lat: 17.065, lng: -96.723 },
+        mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3814.135610885082!2d-96.73707672540839!3d17.066018111984825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c723e2f3a446e9%3A0xf2b8db02961a7099!2sTwister%20Crossfit%20Gym!5e0!3m2!1ses!2smx!4v1770127895943!5m2!1ses!2smx'
     },
     {
         id: '2',

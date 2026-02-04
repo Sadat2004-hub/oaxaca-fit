@@ -94,7 +94,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                     }}>
                         {categoryListings.map((listing) => (
                             <Link
-                                href={`/directorio/${category}/${listing.slug}`}
+                                href={`/${listing.slug}`}
                                 key={listing.id}
                                 className="listing-card"
                                 style={{
