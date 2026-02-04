@@ -67,6 +67,30 @@ export const listings: Listing[] = [
         mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3814.135610885082!2d-96.73707672540839!3d17.066018111984825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c723e2f3a446e9%3A0xf2b8db02961a7099!2sTwister%20Crossfit%20Gym!5e0!3m2!1ses!2smx!4v1770127895943!5m2!1ses!2smx'
     },
     {
+        id: '7',
+        name: 'Fearless Cross - Training',
+        slug: 'fearless-cross-training',
+        category: 'CrossFit & Funcional',
+        categorySlug: 'crossfit',
+        address: 'C. de Carlos María Bustamante 718-B, Centro, 68000 Oaxaca de Juárez, Oax.',
+        whatsapp: '529511350208',
+        image: '/images/fearless-cross-training/fearless-cross-training.jpg',
+        gallery: [
+            '/images/fearless-cross-training/fearless-cross-training.jpg',
+            '/images/fearless-cross-training/fearless-cross-training1.jpg',
+            '/images/fearless-cross-training/fearless-cross-training2.jpg',
+            '/images/fearless-cross-training/fearless-cross-training3.jpg',
+            '/images/fearless-cross-training/fearless-cross-training4.jpg',
+            '/images/fearless-cross-training/fearless-cross-training5.jpg',
+        ],
+        description: 'Centro de entrenamiento funcional y CrossFit en el centro de Oaxaca. Clases dinámicas y comunidad motivadora.',
+        services: ['CrossFit', 'Entrenamiento Funcional'],
+        openingHours: 'Lun-Vie: 6:00 - 13:00, 16:00 - 22:00, Sáb: 8:00 - 12:00',
+        location: { lat: 17.058, lng: -96.726 },
+        rating: 5.0,
+        mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15256.540787947439!2d-96.74222661713857!3d17.066038365205042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c723147c316a11%3A0x286b4bf9c9216538!2sFearless%20Cross%20-%20Training!5e0!3m2!1ses!2smx!4v1770242977490!5m2!1ses!2smx'
+    },
+    {
         id: '2',
         name: 'CrossFit Oaxaca',
         slug: 'crossfit-oaxaca',
