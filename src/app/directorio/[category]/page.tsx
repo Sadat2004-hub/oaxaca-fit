@@ -127,7 +127,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                                         color: 'var(--primary)',
                                         boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
                                     }}>
-                                        4.9 ⭐
+                                        {listing.rating || 4.9} ⭐
                                     </div>
                                 </div>
 
