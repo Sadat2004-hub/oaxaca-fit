@@ -24,10 +24,14 @@ export const listings: Listing[] = [
         categorySlug: 'crossfit',
         address: 'Mariano Escobedo #105, 68000 Oaxaca de Juárez, Oax.',
         whatsapp: '529511234567', // Placeholder contact
-        image: 'https://images.unsplash.com/photo-1541534741688-6078c65b5ec3?q=80&w=1000',
+        image: '/images/twister-crossfit-gym/twister-crossfit-gym.jpg',
         gallery: [
-            'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1000',
-            'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1000',
+            '/images/twister-crossfit-gym/twister-crossfit-gym.jpg',
+            '/images/twister-crossfit-gym/twister-crossfit-gym1.jpg',
+            '/images/twister-crossfit-gym/twister-crossfit-gym2.jpg',
+            '/images/twister-crossfit-gym/twister-crossfit-gym3.jpg',
+            '/images/twister-crossfit-gym/twister-crossfit-gym4.jpg',
+            '/images/twister-crossfit-gym/twister-crossfit-gym5.jpg',
         ],
         description: 'Centro líder en Oaxaca con calificación 4.9. Ofrecemos CrossFit puro, entrenamiento funcional, yoga y asesoría nutricional. ¡Únete a la comunidad más fuerte!',
         services: ['CrossFit', 'Funcional', 'Yoga', 'Nutrición', 'Regaderas'],
