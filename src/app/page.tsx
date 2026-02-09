@@ -17,6 +17,9 @@ const categories = [
   { name: 'Baile y Danza', icon: '💃', slug: 'baile' },
   { name: 'Aventura', icon: '🚵', slug: 'aventura' },
   { name: 'Deportes Equipo', icon: '⚽', slug: 'equipo' },
+  { name: 'Deportes Ecuestres', icon: '🐴', slug: 'ecuestres' },
+  { name: 'Precisión y Estrategia', icon: '🎯', slug: 'precision' },
+  { name: 'Deportes Sobre Ruedas', icon: '🛼', slug: 'ruedas' },
   { name: 'Salud Deportiva', icon: '🏥', slug: 'salud' },
 ];
 

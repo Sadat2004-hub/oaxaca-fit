@@ -125,6 +125,44 @@ const categoryInfo: Record<string, { name: string; icon: string; description: st
             { name: 'Voleibol', slug: 'voleibol', icon: '🏐' }
         ]
     },
+    'ecuestres': {
+        name: 'Deportes Ecuestres',
+        icon: '🐴',
+        description: 'Equitación, Charrería y actividades con caballos en Oaxaca.',
+        sanityValue: 'ecuestres',
+        subcategories: [
+            { name: 'Equitación', slug: 'equitacion', icon: '🏇' },
+            { name: 'Salto', slug: 'salto', icon: '🐎' },
+            { name: 'Charrería', slug: 'charreria', icon: '🤠' },
+            { name: 'Equinoterapia', slug: 'equinoterapia', icon: '🐴' },
+            { name: 'Cabalgatas', slug: 'cabalgatas', icon: '🐴' }
+        ]
+    },
+    'precision': {
+        name: 'Precisión y Estrategia',
+        icon: '🎯',
+        description: 'Deportes que requieren concentración, precisión y pensamiento estratégico.',
+        sanityValue: 'precision',
+        subcategories: [
+            { name: 'Tiro con Arco', slug: 'tiro-arco', icon: '🏹' },
+            { name: 'Club de Golf', slug: 'golf', icon: '⛳' },
+            { name: 'Billar Deportivo', slug: 'billar', icon: '🎱' },
+            { name: 'Boliche', slug: 'boliche', icon: '🎳' },
+            { name: 'Ajedrez', slug: 'ajedrez', icon: '♟️' }
+        ]
+    },
+    'ruedas': {
+        name: 'Deportes Sobre Ruedas',
+        icon: '🛼',
+        description: 'Patinaje, Skateboarding y deportes de acción sobre ruedas.',
+        sanityValue: 'ruedas',
+        subcategories: [
+            { name: 'Patinaje', slug: 'patinaje', icon: '⛸️' },
+            { name: 'Skateboarding', slug: 'skateboarding', icon: '🛹' },
+            { name: 'BMX', slug: 'bmx', icon: '🚴' },
+            { name: 'Hockey sobre Ruedas', slug: 'hockey-ruedas', icon: '🏒' }
+        ]
+    },
     'salud': {
         name: 'Salud Deportiva',
         icon: '🏥',
@@ -169,7 +207,24 @@ const categoryInfo: Record<string, { name: string; icon: string; description: st
     'basquetball': { name: 'Basquetball', icon: '🏀', description: 'Canchas y ligas de Basquetball.', sanityValue: 'basquetball' },
     'voleibol': { name: 'Voleibol', icon: '🏐', description: 'Canchas y ligas de Voleibol.', sanityValue: 'voleibol' },
     'fisioterapia': { name: 'Fisio & Masajes', icon: '🏥', description: 'Fisioterapia y masajes deportivos.', sanityValue: 'fisioterapia' },
-    'nutricion': { name: 'Nutrición', icon: '🥗', description: 'Especialistas en nutrición deportiva.', sanityValue: 'nutricion' }
+    'nutricion': { name: 'Nutrición', icon: '🥗', description: 'Especialistas en nutrición deportiva.', sanityValue: 'nutricion' },
+    // Subcategorías Ecuestres
+    'equitacion': { name: 'Equitación', icon: '🏇', description: 'Clases de equitación y doma.', sanityValue: 'equitacion' },
+    'salto': { name: 'Salto Ecuestre', icon: '🐎', description: 'Entrenamiento de salto ecuestre.', sanityValue: 'salto' },
+    'charreria': { name: 'Charrería', icon: '🤠', description: 'Deporte tradicional mexicano con caballos.', sanityValue: 'charreria' },
+    'equinoterapia': { name: 'Equinoterapia', icon: '🐴', description: 'Terapia asistida con caballos.', sanityValue: 'equinoterapia' },
+    'cabalgatas': { name: 'Cabalgatas', icon: '🐴', description: 'Paseos a caballo y tours ecuestres.', sanityValue: 'cabalgatas' },
+    // Subcategorías Precisión y Estrategia
+    'tiro-arco': { name: 'Tiro con Arco', icon: '🏹', description: 'Práctica de tiro con arco.', sanityValue: 'tiro-arco' },
+    'golf': { name: 'Golf', icon: '⛳', description: 'Clubes de golf en Oaxaca.', sanityValue: 'golf' },
+    'billar': { name: 'Billar Deportivo', icon: '🎱', description: 'Mesas de billar y pool.', sanityValue: 'billar' },
+    'boliche': { name: 'Boliche', icon: '🎳', description: 'Pistas de boliche en Oaxaca.', sanityValue: 'boliche' },
+    'ajedrez': { name: 'Ajedrez', icon: '♟️', description: 'Clubes y clases de ajedrez.', sanityValue: 'ajedrez' },
+    // Subcategorías Sobre Ruedas
+    'patinaje': { name: 'Patinaje', icon: '⛸️', description: 'Patinaje artístico y recreativo.', sanityValue: 'patinaje' },
+    'skateboarding': { name: 'Skateboarding', icon: '🛹', description: 'Skateparks y clases de skate.', sanityValue: 'skateboarding' },
+    'bmx': { name: 'BMX', icon: '🚴', description: 'Pistas y clases de BMX.', sanityValue: 'bmx' },
+    'hockey-ruedas': { name: 'Hockey sobre Ruedas', icon: '🏒', description: 'Equipos y ligas de hockey sobre ruedas.', sanityValue: 'hockey-ruedas' }
 };
 
 export async function generateStaticParams() {

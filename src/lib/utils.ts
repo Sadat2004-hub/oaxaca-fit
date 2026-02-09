@@ -45,7 +45,28 @@ export const categoryMapping: Record<string, { label: string; slug: string }> = 
     'escalada': { label: 'Escalada', slug: 'escalada' },
     'running': { label: 'Running', slug: 'running' },
     'fisioterapia': { label: 'Fisioterapia / Masajes', slug: 'fisioterapia' },
-    'nutricion': { label: 'Nutrición', slug: 'nutricion' }
+    'nutricion': { label: 'Nutrición', slug: 'nutricion' },
+    // Categorías principales nuevas
+    'ecuestres': { label: 'Deportes Ecuestres', slug: 'ecuestres' },
+    'precision': { label: 'Precisión y Estrategia', slug: 'precision' },
+    'ruedas': { label: 'Deportes Sobre Ruedas', slug: 'ruedas' },
+    // Subcategorías Ecuestres
+    'equitacion': { label: 'Equitación', slug: 'equitacion' },
+    'salto': { label: 'Salto Ecuestre', slug: 'salto' },
+    'charreria': { label: 'Charrería', slug: 'charreria' },
+    'equinoterapia': { label: 'Equinoterapia', slug: 'equinoterapia' },
+    'cabalgatas': { label: 'Cabalgatas', slug: 'cabalgatas' },
+    // Subcategorías Precisión y Estrategia
+    'tiro-arco': { label: 'Tiro con Arco', slug: 'tiro-arco' },
+    'golf': { label: 'Golf', slug: 'golf' },
+    'billar': { label: 'Billar Deportivo', slug: 'billar' },
+    'boliche': { label: 'Boliche', slug: 'boliche' },
+    'ajedrez': { label: 'Ajedrez', slug: 'ajedrez' },
+    // Subcategorías Sobre Ruedas
+    'patinaje': { label: 'Patinaje', slug: 'patinaje' },
+    'skateboarding': { label: 'Skateboarding', slug: 'skateboarding' },
+    'bmx': { label: 'BMX', slug: 'bmx' },
+    'hockey-ruedas': { label: 'Hockey sobre Ruedas', slug: 'hockey-ruedas' }
 };
 
 export function getCategoryData(sanityValue: string) {
