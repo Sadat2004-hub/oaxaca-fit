@@ -61,6 +61,8 @@ export const proveedorType = defineType({
                     { title: '🏓 Pickeball', value: 'pickleball' },
                     { title: '🏓 Pinpon', value: 'pinpon' },
                     { title: '🏸 Bádminton', value: 'badminton' },
+                    { title: '🤸 Gimnasia', value: 'gimnasia' },
+                    { title: '🏢 Clubes Deportivos', value: 'clubes' },
                     { title: '🏊 Acuáticos', value: 'acuaticos' },
                     { title: '💃 Baile y Danza (General)', value: 'baile' },
                     { title: '💃 Zumba', value: 'zumba' },

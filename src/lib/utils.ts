@@ -5,6 +5,8 @@ export const categoryMapping: Record<string, { label: string; slug: string }> = 
     'artes-marciales': { label: 'Artes Marciales', slug: 'artes-marciales' },
     'boxeo': { label: 'Boxeo', slug: 'boxeo' },
     'raqueta': { label: 'Deportes Raqueta', slug: 'raqueta' },
+    'gimnasia': { label: 'Gimnasia', slug: 'gimnasia' },
+    'clubes': { label: 'Clubes Deportivos', slug: 'clubes' },
     'acuaticos': { label: 'Acuáticos', slug: 'acuaticos' },
     'baile': { label: 'Baile y Danza', slug: 'baile' },
     'aventura': { label: 'Aventura', slug: 'aventura' },

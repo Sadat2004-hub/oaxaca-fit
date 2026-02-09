@@ -70,6 +70,18 @@ const categoryInfo: Record<string, { name: string; icon: string; description: st
             { name: 'Bádminton', slug: 'badminton', icon: '🏸' }
         ]
     },
+    'gimnasia': {
+        name: 'Gimnasia',
+        icon: '🤸',
+        description: 'Centros de gimnasia artística, rítmica y recreativa en Oaxaca.',
+        sanityValue: 'gimnasia'
+    },
+    'clubes': {
+        name: 'Clubes Deportivos',
+        icon: '🏢',
+        description: 'Clubes con múltiples disciplinas, albercas y gimnasios.',
+        sanityValue: 'clubes'
+    },
     'acuaticos': {
         name: 'Acuáticos',
         icon: '🏊',
