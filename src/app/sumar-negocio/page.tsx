@@ -37,7 +37,7 @@ export default function SumarNegocio() {
                 display: 'inline-block',
                 boxShadow: '0 10px 30px rgba(255, 107, 0, 0.3)'
             }}>
-                📲 ¡Quiero registrar mi negocio!
+                ¡Quiero registrar mi negocio!
             </Link>
         </div>
     );
