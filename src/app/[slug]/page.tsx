@@ -72,19 +72,24 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                     </p>
 
                     {/* Quick Contact - Mobile Only */}
-                    <div className="mobile-only-contact" style={{ display: 'none', flexDirection: 'column', gap: '10px', marginTop: '20px' }}>
+                    <div className="mobile-only-contact" style={{ display: 'none', flexDirection: 'column', gap: '15px', marginTop: '25px' }}>
                         <Link href={waLink} target="_blank" style={{
-                            color: '#25D366',
-                            fontSize: '1.2rem',
-                            fontWeight: '700',
+                            background: '#25D366',
+                            color: 'white',
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '8px'
+                            justifyContent: 'center',
+                            padding: '16px',
+                            borderRadius: '12px',
+                            fontSize: '1.1rem',
+                            fontWeight: '800',
+                            textAlign: 'center',
+                            boxShadow: '0 10px 20px rgba(37, 211, 102, 0.2)'
                         }}>
-                            📲 {listing.whatsapp}
+                            📲 Contactar por WhatsApp
                         </Link>
-                        <div style={{ color: 'var(--text-light)', fontSize: '1rem' }}>
-                            🕒 {listing.openingHours || 'Consultar horario'}
+                        <div style={{ color: 'var(--text-light)', fontSize: '1rem', fontWeight: '500' }}>
+                            🕒 Horarios: {listing.openingHours || 'Consultar horario'}
                         </div>
                     </div>
                 </div>
@@ -190,7 +195,7 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
 
                 {/* Sidebar */}
                 <aside className="listing-sidebar" style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
-                    <div style={{
+                    <div className="sidebar-container" style={{
                         padding: '30px',
                         background: 'var(--surface)',
                         borderRadius: 'var(--radius)',
@@ -205,39 +210,43 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                         </div>
 
                         {listing.website && (
-                            <Link href={listing.website} target="_blank" style={{
-                                background: 'white',
-                                color: 'var(--text)',
-                                border: '2px solid var(--border)',
+                            <div className="sidebar-desktop-info">
+                                <Link href={listing.website} target="_blank" style={{
+                                    background: 'white',
+                                    color: 'var(--text)',
+                                    border: '2px solid var(--border)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    padding: '15px',
+                                    borderRadius: 'var(--radius)',
+                                    fontSize: '1rem',
+                                    fontWeight: '700',
+                                    textAlign: 'center',
+                                    marginBottom: '15px'
+                                }}>
+                                    🌐 Visitar Sitio Web
+                                </Link>
+                            </div>
+                        )}
+
+                        <div className="sidebar-desktop-info">
+                            <Link href={waLink} target="_blank" style={{
+                                background: '#25D366',
+                                color: 'white',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                padding: '15px',
+                                padding: '18px',
                                 borderRadius: 'var(--radius)',
-                                fontSize: '1rem',
-                                fontWeight: '700',
+                                fontSize: '1.1rem',
+                                fontWeight: '800',
                                 textAlign: 'center',
-                                marginBottom: '15px'
+                                boxShadow: '0 10px 20px rgba(37, 211, 102, 0.2)'
                             }}>
-                                🌐 Visitar Sitio Web
+                                📲 Contactar por WhatsApp
                             </Link>
-                        )}
-
-                        <Link href={waLink} target="_blank" style={{
-                            background: '#25D366',
-                            color: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            padding: '18px',
-                            borderRadius: 'var(--radius)',
-                            fontSize: '1.1rem',
-                            fontWeight: '800',
-                            textAlign: 'center',
-                            boxShadow: '0 10px 20px rgba(37, 211, 102, 0.2)'
-                        }}>
-                            📲 Contactar por WhatsApp
-                        </Link>
+                        </div>
 
                         <div style={{ marginTop: '20px', textAlign: 'center' }}>
                             <Link href="/sumar-negocio" style={{ fontSize: '13px', color: 'var(--text-light)', textDecoration: 'underline' }}>
