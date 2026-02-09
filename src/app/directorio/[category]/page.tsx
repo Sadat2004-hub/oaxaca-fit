@@ -82,9 +82,12 @@ const categoryInfo: Record<string, { name: string; icon: string; description: st
         description: 'Zumba, Pole Dance, Salsa y diversos ritmos para mover el cuerpo.',
         sanityValue: 'baile',
         subcategories: [
-            { name: 'Zumba/Latinos', slug: 'zumba', icon: '💃' },
+            { name: 'Zumba', slug: 'zumba', icon: '💃' },
+            { name: 'Ritmos Latinos', slug: 'ritmos-latinos', icon: '🕺' },
             { name: 'Pole Dance', slug: 'pole-dance', icon: '💃' },
-            { name: 'Salsa/Bachata', slug: 'salsa', icon: '💃' }
+            { name: 'Aerial (Telas)', slug: 'aerial', icon: '🎪' },
+            { name: 'Salsa', slug: 'salsa', icon: '💃' },
+            { name: 'Bachata', slug: 'bachata', icon: '🕺' }
         ]
     },
     'aventura': {
@@ -138,9 +141,12 @@ const categoryInfo: Record<string, { name: string; icon: string; description: st
     'pickleball': { name: 'Pickleball', icon: '🎾', description: 'Canchas de Pickleball en Oaxaca.', sanityValue: 'pickleball' },
     'pinpon': { name: 'Pinpon', icon: '🏓', description: 'Mesas y clubes de Pinpon/Tenis de Mesa.', sanityValue: 'pinpon' },
     'badminton': { name: 'Bádminton', icon: '🏸', description: 'Pistas y clubes de Bádminton.', sanityValue: 'badminton' },
-    'zumba': { name: 'Zumba/Latinos', icon: '💃', description: 'Zumba y Ritmos Latinos.', sanityValue: 'zumba' },
-    'pole-dance': { name: 'Pole Dance', icon: '💃', description: 'Pole Dance y Telas Aéreas.', sanityValue: 'pole-dance' },
-    'salsa': { name: 'Salsa/Bachata', icon: '💃', description: 'Clases de Salsa y Bachata.', sanityValue: 'salsa' },
+    'zumba': { name: 'Zumba', icon: '💃', description: 'Clases de Zumba Fitness.', sanityValue: 'zumba' },
+    'ritmos-latinos': { name: 'Ritmos Latinos', icon: '🕺', description: 'Clases de ritmos tropicales y latinos.', sanityValue: 'ritmos-latinos' },
+    'pole-dance': { name: 'Pole Dance', icon: '💃', description: 'Estudios de Pole Dance en Oaxaca.', sanityValue: 'pole-dance' },
+    'aerial': { name: 'Aerial (Telas)', icon: '🎪', description: 'Clases de Danza Aérea y Telas.', sanityValue: 'aerial' },
+    'salsa': { name: 'Salsa', icon: '💃', description: 'Clases de Salsa (Línea, Cubana, etc).', sanityValue: 'salsa' },
+    'bachata': { name: 'Bachata', icon: '🕺', description: 'Clases de Bachata para todos los niveles.', sanityValue: 'bachata' },
     'ciclismo': { name: 'Ciclismo', icon: '🚲', description: 'Ciclismo de Ruta y Montaña/MTB.', sanityValue: 'ciclismo' },
     'senderismo': { name: 'Senderismo', icon: '🥾', description: 'Clubes de caminata y Trekking.', sanityValue: 'senderismo' },
     'escalada': { name: 'Escalada', icon: '🧗', description: 'Rocódromos y salidas a roca.', sanityValue: 'escalada' },

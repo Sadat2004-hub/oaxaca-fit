@@ -24,7 +24,13 @@ export const categoryMapping: Record<string, { label: string; slug: string }> = 
     'fronton': { label: 'Frontón/Frontenis', slug: 'fronton' },
     'pickleball': { label: 'Pickleball', slug: 'pickleball' },
     'pinpon': { label: 'Pinpon', slug: 'pinpon' },
-    'badminton': { label: 'Bádminton', slug: 'badminton' }
+    'badminton': { label: 'Bádminton', slug: 'badminton' },
+    'zumba': { label: 'Zumba', slug: 'zumba' },
+    'ritmos-latinos': { label: 'Ritmos Latinos', slug: 'ritmos-latinos' },
+    'pole-dance': { label: 'Pole Dance', slug: 'pole-dance' },
+    'aerial': { label: 'Aerial (Telas)', slug: 'aerial' },
+    'salsa': { label: 'Salsa', slug: 'salsa' },
+    'bachata': { label: 'Bachata', slug: 'bachata' }
 };
 
 export function getCategoryData(sanityValue: string) {
