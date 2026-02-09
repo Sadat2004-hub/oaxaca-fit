@@ -56,14 +56,9 @@ export const proveedorType = defineType({
             type: 'string',
         }),
         defineField({
-            name: 'location',
-            title: 'Ubicación en el Mapa',
-            type: 'geopoint',
-        }),
-        defineField({
             name: 'mapEmbedUrl',
-            title: 'Google Maps Embed URL',
-            description: 'Pega aquí el enlace de "Insertar mapa" de Google Maps',
+            title: 'URL de Google Maps (Iframe)',
+            description: 'Copia el src del iframe de Google Maps (Share -> Embed Map)',
             type: 'string',
         }),
         defineField({
