@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 
 export default function Header() {
   return (
@@ -17,16 +16,15 @@ export default function Header() {
         justifyContent: 'space-between',
         alignItems: 'center'
       }}>
-        <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
-          <Image
-            src="/images/oaxaca-fit-logo.svg"
-            alt="Oaxaca Fit Logo"
-            width={200}
-            height={60}
-            className="header-logo-image"
-            style={{ width: 'auto' }}
-            priority
-          />
+        <Link href="/" style={{
+          display: 'flex',
+          alignItems: 'baseline',
+          fontSize: '24px',
+          fontWeight: '800',
+          color: 'var(--text)',
+          letterSpacing: '-0.5px'
+        }}>
+          OaxacaFit<span style={{ color: 'var(--primary)' }}>.</span><span style={{ fontSize: '0.7em', fontWeight: '600' }}>com</span>
         </Link>
         <nav style={{ display: 'flex', gap: '24px', fontWeight: '500', alignItems: 'center' }}>
           <Link
