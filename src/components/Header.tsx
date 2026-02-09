@@ -20,11 +20,13 @@ export default function Header() {
           display: 'flex',
           alignItems: 'baseline',
           fontSize: '24px',
-          fontWeight: '800',
-          color: 'var(--text)',
-          letterSpacing: '-0.5px'
+          fontWeight: '900',
+          letterSpacing: '-1px'
         }}>
-          OaxacaFit<span style={{ color: 'var(--primary)' }}>.</span><span style={{ fontSize: '0.7em', fontWeight: '600' }}>com</span>
+          <span style={{ color: 'var(--primary)' }}>Oaxaca</span>
+          <span style={{ color: 'black' }}>Fit</span>
+          <span style={{ color: 'var(--primary)', fontWeight: '900' }}>.</span>
+          <span style={{ fontSize: '0.7em', fontWeight: '600', color: 'black' }}>com</span>
         </Link>
         <nav style={{ display: 'flex', gap: '24px', fontWeight: '500', alignItems: 'center' }}>
           <Link

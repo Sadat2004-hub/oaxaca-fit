@@ -4,8 +4,8 @@ export default function Footer() {
     return (
         <footer style={{
             padding: '60px 0 20px',
-            background: 'var(--surface)',
-            borderTop: '1px solid var(--border)',
+            background: '#000',
+            color: '#fff',
             marginTop: '60px'
         }}>
             <div className="container">
@@ -16,40 +16,48 @@ export default function Footer() {
                     marginBottom: '40px'
                 }}>
                     <div>
-                        <h3 style={{ marginBottom: '20px', color: 'var(--primary)' }}>OaxacaFit</h3>
-                        <p style={{ color: 'var(--text-light)', fontSize: '14px' }}>
+                        <Link href="/" style={{
+                            display: 'flex',
+                            alignItems: 'baseline',
+                            fontSize: '24px',
+                            fontWeight: '900',
+                            letterSpacing: '-1px',
+                            marginBottom: '20px'
+                        }}>
+                            <span style={{ color: 'var(--primary)' }}>Oaxaca</span>
+                            <span style={{ color: '#fff' }}>Fit</span>
+                            <span style={{ color: 'var(--primary)', fontWeight: '900' }}>.</span>
+                        </Link>
+                        <p style={{ color: '#aaa', fontSize: '14px' }}>
                             El directorio número uno de fitness, salud y bienestar en el estado de Oaxaca.
                         </p>
                     </div>
                     <div>
-                        <h4 style={{ marginBottom: '20px' }}>Enlaces Rápidos</h4>
                         <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                            <li><Link href="/directorio">Directorio</Link></li>
-                            <li><Link href="/blog">Blog</Link></li>
-                            <li><Link href="/sumar-negocio">Sumar mi Negocio</Link></li>
+                            <li><Link href="/directorio" style={{ color: '#fff' }}>Directorio</Link></li>
+                            <li><Link href="/blog" style={{ color: '#fff' }}>Blog</Link></li>
+                            <li><Link href="/sumar-negocio" style={{ color: '#fff' }}>Sumar mi Negocio</Link></li>
                         </ul>
                     </div>
                     <div>
-                        <h4 style={{ marginBottom: '20px' }}>Legal</h4>
                         <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                            <li><Link href="/aviso-legal">Aviso Legal</Link></li>
-                            <li><Link href="/terminos">Términos y Condiciones</Link></li>
+                            <li><Link href="/aviso-legal" style={{ color: '#fff' }}>Aviso Legal</Link></li>
+                            <li><Link href="/terminos" style={{ color: '#fff' }}>Términos y Condiciones</Link></li>
                         </ul>
                     </div>
                     <div>
-                        <h4 style={{ marginBottom: '20px' }}>Contacto</h4>
-                        <p style={{ fontSize: '14px', color: 'var(--text-light)' }}>
+                        <p style={{ fontSize: '14px', color: '#aaa' }}>
                             ¿Necesitas ayuda?<br />
-                            <Link href="https://wa.me/526563230397" style={{ color: 'var(--secondary)', fontWeight: '600' }}>WhatsApp Soporte</Link>
+                            <Link href="https://wa.me/526563230397" style={{ color: 'var(--primary)', fontWeight: '600' }}>WhatsApp Soporte</Link>
                         </p>
                     </div>
                 </div>
                 <div style={{
                     paddingTop: '20px',
-                    borderTop: '1px solid var(--border)',
+                    borderTop: '1px solid #333',
                     textAlign: 'center',
                     fontSize: '12px',
-                    color: 'var(--text-light)'
+                    color: '#666'
                 }}>
                     &copy; {new Date().getFullYear()} OaxacaFit.com - Todos los derechos reservados.
                 </div>

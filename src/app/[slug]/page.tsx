@@ -67,9 +67,26 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                         &larr; Volver a {listing.categoryLabel || listing.category}
                     </Link>
                     <h1 style={{ fontSize: '3rem', fontWeight: '900', marginBottom: '10px' }}>{listing.name}</h1>
-                    <p style={{ fontSize: '1.2rem', color: 'var(--text-light)' }}>
+                    <p style={{ fontSize: '1.2rem', color: 'var(--text-light)', marginBottom: '15px' }}>
                         📍 {listing.address} | <span style={{ color: 'var(--primary)', fontWeight: '600' }}>{listing.categoryLabel || listing.category}</span>
                     </p>
+
+                    {/* Quick Contact - Mobile Only */}
+                    <div className="mobile-only-contact" style={{ display: 'none', flexDirection: 'column', gap: '10px', marginTop: '20px' }}>
+                        <Link href={waLink} target="_blank" style={{
+                            color: '#25D366',
+                            fontSize: '1.2rem',
+                            fontWeight: '700',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px'
+                        }}>
+                            📲 {listing.whatsapp}
+                        </Link>
+                        <div style={{ color: 'var(--text-light)', fontSize: '1rem' }}>
+                            🕒 {listing.openingHours || 'Consultar horario'}
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -182,8 +199,10 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                         top: '120px',
                         boxShadow: 'var(--shadow)'
                     }}>
-                        <h3 style={{ marginBottom: '20px' }}>Horarios</h3>
-                        <p style={{ marginBottom: '30px', color: 'var(--text-light)' }}>{listing.openingHours || 'Consultar horario'}</p>
+                        <div className="sidebar-desktop-info">
+                            <h3 style={{ marginBottom: '20px' }}>Horarios</h3>
+                            <p style={{ marginBottom: '30px', color: 'var(--text-light)' }}>{listing.openingHours || 'Consultar horario'}</p>
+                        </div>
 
                         {listing.website && (
                             <Link href={listing.website} target="_blank" style={{
@@ -229,17 +248,28 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                 </aside>
             </div>
 
-            {/* Interlinking */}
-            <section style={{ padding: '60px 0', borderTop: '1px solid var(--border)', background: 'var(--surface)' }}>
-                <div className="container">
-                    <h2 style={{ marginBottom: '30px' }}>Negocios Destacados</h2>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '20px' }}>
-                        <div style={{ background: 'white', padding: '20px', borderRadius: 'var(--radius)', border: '1px solid var(--border)' }}>
-                            <Link href={`/${listing.slug}`}>
-                                <h4 style={{ color: 'var(--primary)' }}>{listing.name}</h4>
-                                <p style={{ fontSize: '12px', color: 'var(--text-light)' }}>{listing.categoryLabel || listing.category}</p>
-                            </Link>
-                        </div>
+            {/* Sponsors Section */}
+            <section style={{ padding: '80px 0', borderTop: '1px solid var(--border)', background: 'var(--primary)' }}>
+                <div className="container" style={{
+                    background: 'white',
+                    padding: '60px 40px',
+                    borderRadius: '40px',
+                    textAlign: 'center',
+                    boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
+                }}>
+                    <h2 style={{ marginBottom: '40px', color: 'var(--primary)', fontSize: '2.5rem', fontWeight: '900' }}>Patrocinadores</h2>
+                    <div style={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        gap: '60px',
+                        opacity: 0.8
+                    }}>
+                        <div style={{ fontSize: '2.5rem', fontWeight: '900', color: '#000', letterSpacing: '-2px' }}>NIKE</div>
+                        <div style={{ fontSize: '2.5rem', fontWeight: '900', color: '#000', fontStyle: 'italic' }}>adidas</div>
+                        <div style={{ fontSize: '2.5rem', fontWeight: '900', color: '#000' }}>PUMA</div>
+                        <div style={{ fontSize: '2.5rem', fontWeight: '700', color: '#000', letterSpacing: '4px' }}>REEBOK</div>
                     </div>
                 </div>
             </section>
@@ -252,10 +282,24 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
             </div>
 
             <style>{`
-        .carousel-container::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
+                .carousel-container::-webkit-scrollbar {
+                  display: none;
+                }
+                @media (max-width: 768px) {
+                    .listing-grid {
+                        grid-template-columns: 1fr !important;
+                    }
+                    .listing-sidebar {
+                        order: -1;
+                    }
+                    .mobile-only-contact {
+                        display: flex !important;
+                    }
+                    .sidebar-desktop-info {
+                        display: none !important;
+                    }
+                }
+            `}</style>
         </div>
     );
 }
