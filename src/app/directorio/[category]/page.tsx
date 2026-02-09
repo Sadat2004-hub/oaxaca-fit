@@ -39,9 +39,14 @@ const categoryInfo: Record<string, { name: string; icon: string; description: st
         description: 'Disciplinas de combate: Golpeo, Agarre, Lucha e Híbridas.',
         sanityValue: 'artes-marciales',
         subcategories: [
-            { name: 'Golpeo', slug: 'golpeo', icon: '👊' },
-            { name: 'Agarre/Lucha', slug: 'agarre', icon: '🤼' },
-            { name: 'Híbridas', slug: 'hibridas', icon: '⚔️' }
+            { name: 'Kickboxing', slug: 'kickboxing', icon: '👊' },
+            { name: 'Karate', slug: 'karate', icon: '🥋' },
+            { name: 'Taekwondo', slug: 'taekwondo', icon: '🥋' },
+            { name: 'Judo', slug: 'judo', icon: '🤼' },
+            { name: 'Jiu-Jitsu', slug: 'jiu-jitsu', icon: '🥋' },
+            { name: 'Lucha Libre', slug: 'lucha-libre', icon: '🤼' },
+            { name: 'MMA', slug: 'mma', icon: '⚔️' },
+            { name: 'Krav Maga', slug: 'krav-maga', icon: '⚔️' }
         ]
     },
     'boxeo': {
@@ -114,9 +119,14 @@ const categoryInfo: Record<string, { name: string; icon: string; description: st
     'pilates': { name: 'Pilates', icon: '🌀', description: 'Estudios de Pilates en Oaxaca.', sanityValue: 'pilates' },
     'barre': { name: 'Barre', icon: '🩰', description: 'Centros de Barre en Oaxaca.', sanityValue: 'barre' },
     'gap': { name: 'GAP', icon: '🍑', description: 'Clases de Glúteos, Abdomen y Pierna.', sanityValue: 'gap' },
-    'golpeo': { name: 'Golpeo', icon: '👊', description: 'Kickboxing, Karate, Taekwondo y más.', sanityValue: 'golpeo' },
-    'agarre': { name: 'Agarre/Lucha', icon: '🤼', description: 'Judo, BJJ, Lucha Libre y más.', sanityValue: 'agarre' },
-    'hibridas': { name: 'Híbridas', icon: '⚔️', description: 'MMA y Krav Maga.', sanityValue: 'hibridas' },
+    'kickboxing': { name: 'Kickboxing', icon: '👊', description: 'Kickboxing recreativo y competitivo.', sanityValue: 'kickboxing' },
+    'karate': { name: 'Karate', icon: '🥋', description: 'Dojos de Karate en Oaxaca.', sanityValue: 'karate' },
+    'taekwondo': { name: 'Taekwondo', icon: '🥋', description: 'Escuelas de Taekwondo.', sanityValue: 'taekwondo' },
+    'judo': { name: 'Judo', icon: '🤼', description: 'Clases de Judo y defensa personal.', sanityValue: 'judo' },
+    'jiu-jitsu': { name: 'Jiu-Jitsu Brasileño', icon: '🥋', description: 'Academias de BJJ.', sanityValue: 'jiu-jitsu' },
+    'lucha-libre': { name: 'Lucha Libre', icon: '🤼', description: 'Entrenamiento de Lucha Libre profesional.', sanityValue: 'lucha-libre' },
+    'mma': { name: 'MMA', icon: '⚔️', description: 'Artes Marciales Mixtas.', sanityValue: 'mma' },
+    'krav-maga': { name: 'Krav Maga', icon: '⚔️', description: 'Defensa personal Krav Maga.', sanityValue: 'krav-maga' },
     'tenis': { name: 'Tenis', icon: '🎾', description: 'Canchas y clases de Tenis.', sanityValue: 'tenis' },
     'padel': { name: 'Pádel', icon: '🎾', description: 'Canchas y clases de Pádel.', sanityValue: 'padel' },
     'squash': { name: 'Squash', icon: '🎾', description: 'Canchas y clases de Squash.', sanityValue: 'squash' },
