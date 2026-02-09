@@ -35,7 +35,17 @@ export const categoryMapping: Record<string, { label: string; slug: string }> = 
     'bachata': { label: 'Bachata', slug: 'bachata' },
     'futbol': { label: 'Futbol', slug: 'futbol' },
     'basquetball': { label: 'Basquetball', slug: 'basquetball' },
-    'voleibol': { label: 'Voleibol', slug: 'voleibol' }
+    'voleibol': { label: 'Voleibol', slug: 'voleibol' },
+    'yoga': { label: 'Yoga', slug: 'yoga' },
+    'pilates': { label: 'Pilates', slug: 'pilates' },
+    'barre': { label: 'Barre', slug: 'barre' },
+    'gap': { label: 'GAP', slug: 'gap' },
+    'ciclismo': { label: 'Ciclismo', slug: 'ciclismo' },
+    'senderismo': { label: 'Senderismo', slug: 'senderismo' },
+    'escalada': { label: 'Escalada', slug: 'escalada' },
+    'running': { label: 'Running', slug: 'running' },
+    'fisioterapia': { label: 'Fisioterapia / Masajes', slug: 'fisioterapia' },
+    'nutricion': { label: 'Nutrición', slug: 'nutricion' }
 };
 
 export function getCategoryData(sanityValue: string) {
