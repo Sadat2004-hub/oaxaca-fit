@@ -30,8 +30,10 @@ export const proveedorType = defineType({
         }),
         defineField({
             name: 'category',
-            title: 'Categoría',
-            type: 'string',
+            title: 'Categorías',
+            description: 'Selecciona todas las categorías que apliquen',
+            type: 'array',
+            of: [{ type: 'string' }],
             options: {
                 list: [
                     { title: 'CrossFit', value: 'crossfit' },
@@ -42,7 +44,7 @@ export const proveedorType = defineType({
                     { title: 'Natación', value: 'swimming' },
                 ],
             },
-            validation: (Rule) => Rule.required(),
+            validation: (Rule) => Rule.required().min(1),
         }),
         defineField({
             name: 'description',

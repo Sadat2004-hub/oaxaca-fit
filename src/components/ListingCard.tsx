@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { getCategoryData } from '@/lib/utils';
 
 interface ListingCardProps {
     listing: {
@@ -16,7 +17,8 @@ interface ListingCardProps {
 }
 
 export default function ListingCard({ listing }: ListingCardProps) {
-    const displayCategory = listing.categoryLabel || listing.category;
+    const categories = Array.isArray(listing.category) ? listing.category : [listing.category];
+    const displayCategory = listing.categoryLabel || getCategoryData(categories[0]).label;
 
     return (
         <Link

@@ -21,7 +21,8 @@ export default async function DirectoryPage() {
     // 3. Mezclarlos
     const allListings = [
         ...(sanityListings || []).map((s: any) => {
-            const catData = getCategoryData(s.category);
+            const categories = Array.isArray(s.category) ? s.category : [s.category];
+            const catData = getCategoryData(categories[0]);
             return {
                 ...s,
                 categorySlug: catData.slug,

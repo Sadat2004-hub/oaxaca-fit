@@ -69,7 +69,8 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
         "hasMap": mapUrl
     };
 
-    const catData = getCategoryData(listing.category);
+    const categories = Array.isArray(listing.category) ? listing.category : [listing.category];
+    const catData = getCategoryData(categories[0]);
 
     return (
         <div className="animate-fade-in">
@@ -85,16 +86,23 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                         &larr; Volver a {catData.label}
                     </Link>
                     <h1 style={{ fontSize: '3.5rem', fontWeight: '900', marginBottom: '10px', letterSpacing: '-1.5px' }}>{listing.name}</h1>
-                    <span style={{
-                        background: 'var(--primary)',
-                        color: 'white',
-                        padding: '5px 15px',
-                        borderRadius: '50px',
-                        fontSize: '0.9rem',
-                        fontWeight: '700'
-                    }}>
-                        {catData.label}
-                    </span>
+                    <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                        {categories.map((cat: string) => {
+                            const data = getCategoryData(cat);
+                            return (
+                                <span key={cat} style={{
+                                    background: 'var(--primary)',
+                                    color: 'white',
+                                    padding: '5px 15px',
+                                    borderRadius: '50px',
+                                    fontSize: '0.9rem',
+                                    fontWeight: '700'
+                                }}>
+                                    {data.label}
+                                </span>
+                            );
+                        })}
+                    </div>
                 </div>
             </section>
 
@@ -289,16 +297,17 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                             border: '1px solid #f0f0f0'
                         }}>
                             <h3 style={{ fontSize: '1.5rem', fontWeight: '800', marginBottom: '25px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                <span style={{ fontSize: '1.5rem' }}>🕒</span> Horarios de Atención
+                                <span style={{ fontSize: '1.5rem' }}>🕒</span> Horarios
                             </h3>
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
                                 {listing.openingHours ? (
                                     Array.isArray(listing.openingHours) ? (
                                         listing.openingHours.map((item: any, idx: number) => (
                                             <div key={idx} style={{
                                                 display: 'flex',
-                                                justifyContent: 'space-between',
-                                                padding: '12px 0',
+                                                flexDirection: 'column',
+                                                gap: '5px',
+                                                paddingBottom: '12px',
                                                 borderBottom: '1px dashed #eee',
                                                 fontSize: '1.1rem'
                                             }}>
@@ -309,8 +318,9 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                                     ) : (
                                         <div style={{
                                             display: 'flex',
-                                            justifyContent: 'space-between',
-                                            padding: '12px 0',
+                                            flexDirection: 'column',
+                                            gap: '5px',
+                                            paddingBottom: '12px',
                                             borderBottom: '1px dashed #eee',
                                             fontSize: '1.1rem'
                                         }}>

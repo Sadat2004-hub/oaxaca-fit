@@ -18,7 +18,7 @@ export const PROVIDE_ALL_QUERY = `*[_type == "proveedor"] | order(order asc, _cr
   rating
 }`
 
-export const PROVIDE_BY_CATEGORY_QUERY = `*[_type == "proveedor" && category == $category] | order(order asc, _createdAt desc) {
+export const PROVIDE_BY_CATEGORY_QUERY = `*[_type == "proveedor" && $category in category] | order(order asc, _createdAt desc) {
   "id": _id,
   name,
   "slug": slug.current,
