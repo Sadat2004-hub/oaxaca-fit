@@ -133,25 +133,37 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                 </div>
 
                 {/* 2. AboutUs & Services Grid */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', marginBottom: '60px' }} className="details-grid">
-                    <div>
-                        <h2 style={{ fontSize: '2rem', fontWeight: '800', marginBottom: '20px' }}>Nosotros</h2>
-                        <p style={{ fontSize: '1.2rem', lineHeight: '1.8', color: '#444', whiteSpace: 'pre-line' }}>{listing.description}</p>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', marginBottom: '60px' }} className="details-grid">
+                    <div style={{
+                        background: 'white',
+                        padding: '40px',
+                        borderRadius: '30px',
+                        boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
+                        border: '1px solid #f0f0f0'
+                    }}>
+                        <h2 style={{ fontSize: '1.8rem', fontWeight: '800', marginBottom: '20px' }}>Nosotros</h2>
+                        <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: '#444', whiteSpace: 'pre-line' }}>{listing.description}</p>
                     </div>
 
                     {listing.services && listing.services.length > 0 && (
-                        <div>
-                            <h2 style={{ fontSize: '2rem', fontWeight: '800', marginBottom: '20px' }}>Servicios</h2>
+                        <div style={{
+                            background: 'white',
+                            padding: '40px',
+                            borderRadius: '30px',
+                            boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
+                            border: '1px solid #f0f0f0'
+                        }}>
+                            <h2 style={{ fontSize: '1.8rem', fontWeight: '800', marginBottom: '20px' }}>Servicios</h2>
                             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
                                 {listing.services.map((s: string) => (
                                     <div key={s} style={{
                                         display: 'flex',
                                         alignItems: 'center',
                                         gap: '10px',
-                                        fontSize: '1.1rem',
+                                        fontSize: '1rem',
                                         color: '#555'
                                     }}>
-                                        <span style={{ color: 'var(--primary)', fontSize: '1.3rem' }}>★</span> {s}
+                                        <span style={{ color: 'var(--primary)', fontSize: '1.2rem' }}>★</span> {s}
                                     </div>
                                 ))}
                             </div>
@@ -167,8 +179,6 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                 borderTop: '1px solid #eee'
             }}>
                 <div className="container">
-                    <h2 style={{ fontSize: '2.5rem', fontWeight: '900', marginBottom: '50px', textAlign: 'center' }}>Contacto</h2>
-
                     <div style={{
                         display: 'grid',
                         gridTemplateColumns: '1fr 1fr',
@@ -176,25 +186,35 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                         alignItems: 'start'
                     }} className="contact-grid">
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+                        <div style={{
+                            background: 'white',
+                            padding: '40px',
+                            borderRadius: '30px',
+                            boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
+                            border: '1px solid #f0f0f0',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '30px'
+                        }}>
+                            <h2 style={{ fontSize: '1.8rem', fontWeight: '800', marginBottom: '10px' }}>Contacto</h2>
+
                             {/* Ubicación */}
                             <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
                                 <div style={{
                                     fontSize: '1.5rem',
-                                    background: 'white',
-                                    width: '60px',
-                                    height: '60px',
+                                    background: '#f8f9fa',
+                                    width: '50px',
+                                    height: '50px',
                                     borderRadius: '50%',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    boxShadow: '0 10px 20px rgba(0,0,0,0.05)',
                                     flexShrink: 0,
                                     border: '1px solid #eee'
                                 }}>📍</div>
                                 <div>
-                                    <h4 style={{ fontSize: '0.8rem', color: 'var(--primary)', textTransform: 'uppercase', fontWeight: '800', marginBottom: '2px', letterSpacing: '1px' }}>Ubicación</h4>
-                                    <p style={{ fontSize: '1.1rem', fontWeight: '600', color: 'var(--text)' }}>{listing.address}</p>
+                                    <h4 style={{ fontSize: '0.75rem', color: 'var(--primary)', textTransform: 'uppercase', fontWeight: '800', marginBottom: '2px', letterSpacing: '1px' }}>Ubicación</h4>
+                                    <p style={{ fontSize: '1rem', fontWeight: '600', color: 'var(--text)' }}>{listing.address}</p>
                                 </div>
                             </div>
 
@@ -202,41 +222,19 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                             <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
                                 <div style={{
                                     fontSize: '1.5rem',
-                                    background: 'white',
-                                    width: '60px',
-                                    height: '60px',
+                                    background: '#f8f9fa',
+                                    width: '50px',
+                                    height: '50px',
                                     borderRadius: '50%',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    boxShadow: '0 10px 20px rgba(0,0,0,0.05)',
                                     flexShrink: 0,
                                     border: '1px solid #eee'
                                 }}>📞</div>
                                 <div>
-                                    <h4 style={{ fontSize: '0.8rem', color: 'var(--primary)', textTransform: 'uppercase', fontWeight: '800', marginBottom: '2px', letterSpacing: '1px' }}>Teléfono</h4>
-                                    <p style={{ fontSize: '1.1rem', fontWeight: '600', color: 'var(--text)' }}>{listing.whatsapp}</p>
-                                </div>
-                            </div>
-
-                            {/* Horarios */}
-                            <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                                <div style={{
-                                    fontSize: '1.5rem',
-                                    background: 'white',
-                                    width: '60px',
-                                    height: '60px',
-                                    borderRadius: '50%',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    boxShadow: '0 10px 20px rgba(0,0,0,0.05)',
-                                    flexShrink: 0,
-                                    border: '1px solid #eee'
-                                }}>🕒</div>
-                                <div>
-                                    <h4 style={{ fontSize: '0.8rem', color: 'var(--primary)', textTransform: 'uppercase', fontWeight: '800', marginBottom: '2px', letterSpacing: '1px' }}>Horarios</h4>
-                                    <p style={{ fontSize: '1.1rem', fontWeight: '600', color: 'var(--text)' }}>{listing.openingHours || 'Consultar horario'}</p>
+                                    <h4 style={{ fontSize: '0.75rem', color: 'var(--primary)', textTransform: 'uppercase', fontWeight: '800', marginBottom: '2px', letterSpacing: '1px' }}>Teléfono</h4>
+                                    <p style={{ fontSize: '1rem', fontWeight: '600', color: 'var(--text)' }}>{listing.whatsapp}</p>
                                 </div>
                             </div>
 
@@ -247,12 +245,12 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                                 display: 'inline-flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                padding: '20px 40px',
+                                padding: '18px 30px',
                                 borderRadius: '50px',
-                                fontSize: '1.2rem',
+                                fontSize: '1.1rem',
                                 fontWeight: '800',
                                 textAlign: 'center',
-                                marginTop: '20px',
+                                marginTop: '10px',
                                 textDecoration: 'none',
                                 boxShadow: '0 10px 20px rgba(37, 211, 102, 0.2)'
                             }}>
@@ -260,28 +258,61 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                             </Link>
                         </div>
 
-                        {/* Map */}
-                        <div style={{
-                            width: '100%',
-                            height: '450px',
-                            background: '#eee',
-                            borderRadius: '30px',
-                            overflow: 'hidden',
-                            boxShadow: '0 20px 40px rgba(0,0,0,0.05)',
-                            border: '4px solid white'
-                        }}>
-                            {listing.mapEmbedUrl ? (
-                                <iframe
-                                    src={listing.mapEmbedUrl}
-                                    width="100%"
-                                    height="100%"
-                                    style={{ border: 0 }}
-                                    allowFullScreen={true}
-                                    loading="lazy"
-                                />
-                            ) : (
-                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#999' }}>📍 Mapa no disponible</div>
-                            )}
+                        {/* Map & Hours Column */}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
+                            {/* Map Card */}
+                            <div style={{
+                                width: '100%',
+                                height: '350px',
+                                background: 'white',
+                                borderRadius: '30px',
+                                overflow: 'hidden',
+                                boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
+                                border: '4px solid white'
+                            }}>
+                                {listing.mapEmbedUrl ? (
+                                    <iframe
+                                        src={listing.mapEmbedUrl}
+                                        width="100%"
+                                        height="100%"
+                                        style={{ border: 0 }}
+                                        allowFullScreen={true}
+                                        loading="lazy"
+                                    />
+                                ) : (
+                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#999' }}>📍 Mapa no disponible</div>
+                                )}
+                            </div>
+
+                            {/* Hours Card (Guia Medica style) */}
+                            <div style={{
+                                background: 'white',
+                                padding: '40px',
+                                borderRadius: '30px',
+                                boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
+                                border: '1px solid #f0f0f0'
+                            }}>
+                                <h3 style={{ fontSize: '1.5rem', fontWeight: '800', marginBottom: '25px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                    <span style={{ fontSize: '1.5rem' }}>🕒</span> Horarios de Atención
+                                </h3>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                    {listing.openingHours ? (
+                                        <div style={{
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            padding: '12px 0',
+                                            borderBottom: '1px dashed #eee',
+                                            fontSize: '1.1rem'
+                                        }}>
+                                            <span style={{ fontWeight: '700', color: '#555' }}>Lunes a Domingo</span>
+                                            <span style={{ color: 'var(--primary)', fontWeight: '800' }}>{listing.openingHours}</span>
+                                        </div>
+                                    ) : (
+                                        <p style={{ color: '#888' }}>Consultar horarios directamente con el establecimiento.</p>
+                                    )}
+                                    <p style={{ fontSize: '0.9rem', color: '#999', marginTop: '10px', fontStyle: 'italic' }}>* Los horarios pueden variar en días festivos.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
