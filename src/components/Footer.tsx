@@ -27,6 +27,7 @@ export default function Footer() {
                             <span style={{ color: 'var(--primary)' }}>Oaxaca</span>
                             <span style={{ color: '#fff' }}>Fit</span>
                             <span style={{ color: 'var(--primary)', fontWeight: '900' }}>.</span>
+                            <span style={{ fontSize: '0.7em', fontWeight: '600', color: '#fff' }}>com</span>
                         </Link>
                         <p style={{ color: '#aaa', fontSize: '14px' }}>
                             El directorio número uno de fitness, salud y bienestar en el estado de Oaxaca.
