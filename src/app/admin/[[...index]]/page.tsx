@@ -9,7 +9,7 @@
  * https://www.sanity.io/docs/nextjs-navigation
  */
 
-import { NextStudio } from 'sanity/studio'
+import { NextStudio } from 'next-sanity/studio'
 import config from '../../../../sanity.config'
 
 export default function StudioPage() {
