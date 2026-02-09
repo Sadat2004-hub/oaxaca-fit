@@ -2,7 +2,16 @@ import { listings } from '@/data/listings';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getProveedorBySlug } from '@/lib/sanity.queries';
+import { getProveedorBySlug, getAllProveedores } from '@/lib/sanity.queries';
+import { getCategoryData } from '@/lib/utils';
+
+export async function generateStaticParams() {
+    const sanityProveedores = await getAllProveedores();
+    const sanitySlugs = sanityProveedores.map((p: any) => ({ slug: p.slug }));
+    const localSlugs = listings.map((l) => ({ slug: l.slug }));
+
+    return [...localSlugs, ...sanitySlugs];
+}
 
 export default async function ListingPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
@@ -14,12 +23,11 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
     if (!listing) {
         const sanityListing = await getProveedorBySlug(slug);
         if (sanityListing) {
+            const catData = getCategoryData(sanityListing.category);
             listing = {
                 ...sanityListing,
-                categoryLabel: sanityListing.category === 'gym' ? 'Gimnasios Clásicos' :
-                    sanityListing.category === 'crossfit' ? 'CrossFit & Funcional' :
-                        sanityListing.category === 'yoga' ? 'Yoga & Pilates' :
-                            sanityListing.category
+                categoryLabel: catData.label,
+                categorySlug: catData.slug
             };
         }
     }
@@ -68,7 +76,7 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                 <div className="listing-content-container" style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
 
                     {/* Gallery Carousel */}
-                    {listing.gallery && listing.gallery.length > 0 && (
+                    {listing.gallery && listing.gallery.length > 0 ? (
                         <div>
                             <h2 style={{ marginBottom: '20px' }}>Galería</h2>
                             <div style={{
@@ -94,6 +102,18 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                                 ))}
                             </div>
                             <p style={{ fontSize: '12px', color: 'var(--text-light)', marginTop: '5px' }}>&larr; Desliza para ver más fotos &rarr;</p>
+                        </div>
+                    ) : listing.image && (
+                        <div>
+                            <h2 style={{ marginBottom: '20px' }}>Imagen</h2>
+                            <div style={{
+                                position: 'relative',
+                                height: '450px',
+                                borderRadius: 'var(--radius)',
+                                overflow: 'hidden'
+                            }}>
+                                <Image src={listing.image} alt={listing.name} fill style={{ objectFit: 'cover' }} />
+                            </div>
                         </div>
                     )}
 

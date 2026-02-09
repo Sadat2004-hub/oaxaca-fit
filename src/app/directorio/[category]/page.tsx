@@ -1,8 +1,9 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { listings } from '@/data/listings';
 import { notFound } from 'next/navigation';
 import { getProveedoresByCategory } from '@/lib/sanity.queries';
+import { getCategoryData } from '@/lib/utils';
+import ListingCard from '@/components/ListingCard';
 
 // Map slugs to display names and icons
 const categoryInfo: Record<string, { name: string; icon: string; description: string; sanityValue: string }> = {
@@ -53,7 +54,10 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
     }
 
     // 1. Obtener los locales
-    const localListings = listings.filter(item => item.categorySlug === category);
+    const localListings = listings.filter(item => item.categorySlug === category).map(l => ({
+        ...l,
+        categoryLabel: l.category
+    }));
 
     // 2. Obtener los de Sanity
     const sanityListings = await getProveedoresByCategory(info.sanityValue);
@@ -61,10 +65,14 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
     // 3. Mezclarlos
     const allListings = [
         ...localListings,
-        ...(sanityListings || []).map((s: any) => ({
-            ...s,
-            categorySlug: category
-        }))
+        ...(sanityListings || []).map((s: any) => {
+            const catData = getCategoryData(s.category);
+            return {
+                ...s,
+                categorySlug: catData.slug,
+                categoryLabel: catData.label
+            };
+        })
     ];
 
     return (
@@ -109,78 +117,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                         gap: '30px'
                     }}>
                         {allListings.map((listing) => (
-                            <Link
-                                href={`/${listing.slug}`}
-                                key={listing.id}
-                                className="listing-card"
-                                style={{
-                                    background: 'white',
-                                    borderRadius: '20px',
-                                    overflow: 'hidden',
-                                    boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
-                                    border: '1px solid var(--border)',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    transition: 'transform 0.3s ease, box-shadow 0.3s ease'
-                                }}
-                            >
-                                <div style={{ position: 'relative', height: '220px', width: '100%' }}>
-                                    {listing.image ? (
-                                        <Image
-                                            src={listing.image}
-                                            alt={listing.name}
-                                            fill
-                                            style={{ objectFit: 'cover' }}
-                                        />
-                                    ) : (
-                                        <div style={{ width: '100%', height: '100%', background: '#eee', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>🏋️</div>
-                                    )}
-                                    <div style={{
-                                        position: 'absolute',
-                                        top: '15px',
-                                        right: '15px',
-                                        background: 'white',
-                                        padding: '5px 12px',
-                                        borderRadius: '20px',
-                                        fontSize: '0.8rem',
-                                        fontWeight: '700',
-                                        color: 'var(--primary)',
-                                        boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
-                                    }}>
-                                        {listing.rating || 4.9} ⭐
-                                    </div>
-                                </div>
-
-                                <div style={{ padding: '25px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                                    <h3 style={{ fontSize: '1.4rem', fontWeight: '700', marginBottom: '10px', lineHeight: '1.3' }}>
-                                        {listing.name}
-                                    </h3>
-                                    <p style={{
-                                        fontSize: '0.95rem',
-                                        color: 'var(--text-light)',
-                                        marginBottom: '20px',
-                                        lineHeight: '1.5',
-                                        flex: 1
-                                    }}>
-                                        {listing.address?.split(',')[0]}...
-                                    </p>
-
-                                    <div style={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'space-between',
-                                        marginTop: 'auto'
-                                    }}>
-                                        <span style={{
-                                            fontSize: '0.9rem',
-                                            color: 'var(--primary)',
-                                            fontWeight: '600'
-                                        }}>
-                                            Ver detalles →
-                                        </span>
-                                    </div>
-                                </div>
-                            </Link>
+                            <ListingCard key={listing.id} listing={listing} />
                         ))}
                     </div>
                 ) : (
