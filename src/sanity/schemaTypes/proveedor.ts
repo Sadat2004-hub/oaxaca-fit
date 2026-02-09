@@ -90,7 +90,17 @@ export const proveedorType = defineType({
         defineField({
             name: 'openingHours',
             title: 'Horarios de Apertura',
-            type: 'string',
+            type: 'array',
+            of: [
+                {
+                    type: 'object',
+                    title: 'Horario',
+                    fields: [
+                        { name: 'days', title: 'Días', type: 'string', description: 'Ej. Lunes a Viernes' },
+                        { name: 'hours', title: 'Horario', type: 'string', description: 'Ej. 06:00 - 22:00' }
+                    ]
+                }
+            ]
         }),
         defineField({
             name: 'rating',

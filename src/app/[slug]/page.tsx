@@ -297,16 +297,31 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                                 </h3>
                                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                                     {listing.openingHours ? (
-                                        <div style={{
-                                            display: 'flex',
-                                            justifyContent: 'space-between',
-                                            padding: '12px 0',
-                                            borderBottom: '1px dashed #eee',
-                                            fontSize: '1.1rem'
-                                        }}>
-                                            <span style={{ fontWeight: '700', color: '#555' }}>Lunes a Domingo</span>
-                                            <span style={{ color: 'var(--primary)', fontWeight: '800' }}>{listing.openingHours}</span>
-                                        </div>
+                                        Array.isArray(listing.openingHours) ? (
+                                            listing.openingHours.map((item: any, idx: number) => (
+                                                <div key={idx} style={{
+                                                    display: 'flex',
+                                                    justifyContent: 'space-between',
+                                                    padding: '12px 0',
+                                                    borderBottom: '1px dashed #eee',
+                                                    fontSize: '1.1rem'
+                                                }}>
+                                                    <span style={{ fontWeight: '700', color: '#555' }}>{item.days}</span>
+                                                    <span style={{ color: 'var(--primary)', fontWeight: '800' }}>{item.hours}</span>
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <div style={{
+                                                display: 'flex',
+                                                justifyContent: 'space-between',
+                                                padding: '12px 0',
+                                                borderBottom: '1px dashed #eee',
+                                                fontSize: '1.1rem'
+                                            }}>
+                                                <span style={{ fontWeight: '700', color: '#555' }}>Lunes a Domingo</span>
+                                                <span style={{ color: 'var(--primary)', fontWeight: '800' }}>{listing.openingHours}</span>
+                                            </div>
+                                        )
                                     ) : (
                                         <p style={{ color: '#888' }}>Consultar horarios directamente con el establecimiento.</p>
                                     )}
