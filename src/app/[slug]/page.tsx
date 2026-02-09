@@ -18,10 +18,8 @@ export async function generateStaticParams() {
 export default async function ListingPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
 
-    // 1. Intenta buscar en los locales (archivo antiguo)
-    let listing: any = listings.find(l => l.slug === slug);
+    let listing = listings.find((l) => l.slug === slug);
 
-    // 2. Si no está ahí, búscalo en Sanity (el nuevo Admin)
     if (!listing) {
         const sanityListing = await getProveedorBySlug(slug);
         if (sanityListing) {
@@ -65,6 +63,8 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
         "openingHours": listing.openingHours
     };
 
+    const catData = getCategoryData(listing.category);
+
     return (
         <div className="animate-fade-in">
             <script
@@ -75,8 +75,8 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
             {/* Header Info */}
             <section style={{ padding: '40px 0 20px' }}>
                 <div className="container">
-                    <Link href={`/directorio/${listing.categorySlug || listing.category}`} style={{ color: 'var(--text-light)', fontSize: '14px', marginBottom: '15px', display: 'block' }}>
-                        &larr; Volver a {listing.categoryLabel || listing.category}
+                    <Link href={`/directorio/${catData.slug}`} style={{ color: 'var(--text-light)', fontSize: '14px', marginBottom: '15px', display: 'block' }}>
+                        &larr; Volver a {catData.label}
                     </Link>
                     <h1 style={{ fontSize: '3.5rem', fontWeight: '900', marginBottom: '10px', letterSpacing: '-1.5px' }}>{listing.name}</h1>
                     <span style={{
@@ -87,7 +87,7 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                         fontSize: '0.9rem',
                         fontWeight: '700'
                     }}>
-                        {listing.categoryLabel || listing.category}
+                        {catData.label}
                     </span>
                 </div>
             </section>
@@ -145,15 +145,15 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                         <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: '#444', whiteSpace: 'pre-line' }}>{listing.description}</p>
                     </div>
 
-                    {listing.services && listing.services.length > 0 ? (
-                        <div style={{
-                            background: 'white',
-                            padding: '40px',
-                            borderRadius: '30px',
-                            boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
-                            border: '1px solid #f0f0f0'
-                        }}>
-                            <h2 style={{ fontSize: '1.8rem', fontWeight: '800', marginBottom: '20px' }}>Servicios</h2>
+                    <div style={{
+                        background: 'white',
+                        padding: '40px',
+                        borderRadius: '30px',
+                        boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
+                        border: '1px solid #f0f0f0'
+                    }}>
+                        <h2 style={{ fontSize: '1.8rem', fontWeight: '800', marginBottom: '20px' }}>Servicios</h2>
+                        {listing.services && listing.services.length > 0 ? (
                             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
                                 {listing.services.map((s: string) => (
                                     <div key={s} style={{
@@ -167,22 +167,10 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                                     </div>
                                 ))}
                             </div>
-                        </div>
-                    ) : (
-                        <div style={{
-                            background: 'white',
-                            padding: '40px',
-                            borderRadius: '30px',
-                            boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
-                            border: '1px solid #f0f0f0',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            color: '#999'
-                        }}>
-                            <p>Servicios no especificados</p>
-                        </div>
-                    )}
+                        ) : (
+                            <p style={{ color: '#999' }}>Servicios no especificados</p>
+                        )}
+                    </div>
                 </div>
 
                 {/* 3. Contact & Map/Hours Grid */}
@@ -365,7 +353,7 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                 }
                 @media (max-width: 768px) {
                     h1 { font-size: 2.5rem !important; }
-                    .details-grid, .contact-grid {
+                    .details-grid {
                         grid-template-columns: 1fr !important;
                     }
                 }
