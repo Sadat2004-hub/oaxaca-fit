@@ -5,6 +5,8 @@ import { notFound } from 'next/navigation';
 import { getProveedorBySlug, getAllProveedores } from '@/lib/sanity.queries';
 import { getCategoryData } from '@/lib/utils';
 
+export const revalidate = 60;
+
 export async function generateStaticParams() {
     const sanityProveedores = await getAllProveedores();
     const sanitySlugs = sanityProveedores.map((p: any) => ({ slug: p.slug }));

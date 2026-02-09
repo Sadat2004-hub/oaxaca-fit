@@ -2,6 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getAllProveedores } from '@/lib/sanity.queries';
 
+export const revalidate = 60; // Revalidar cada minuto
+
 const categories = [
   { name: 'CrossFit & Funcional', icon: '🏋️', slug: 'crossfit' },
   { name: 'Gimnasios Clásicos', icon: '💪', slug: 'gimnasios' },

@@ -3,6 +3,8 @@ import { getAllProveedores } from '@/lib/sanity.queries';
 import { getCategoryData } from '@/lib/utils';
 import ListingCard from '@/components/ListingCard';
 
+export const revalidate = 60;
+
 export default async function DirectoryPage() {
     // 1. Obtener los de Sanity
     const sanityListings = await getAllProveedores();

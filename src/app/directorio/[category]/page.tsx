@@ -5,6 +5,8 @@ import { getProveedoresByCategory } from '@/lib/sanity.queries';
 import { getCategoryData } from '@/lib/utils';
 import ListingCard from '@/components/ListingCard';
 
+export const revalidate = 60;
+
 // Map slugs to display names and icons
 const categoryInfo: Record<string, { name: string; icon: string; description: string; sanityValue: string }> = {
     'crossfit': {
