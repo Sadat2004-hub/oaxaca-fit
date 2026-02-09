@@ -14,7 +14,8 @@ export const PROVIDE_ALL_QUERY = `*[_type == "proveedor"] | order(order asc, _cr
   openingHours,
   location,
   mapEmbedUrl,
-  order
+  order,
+  rating
 }`
 
 export const PROVIDE_BY_CATEGORY_QUERY = `*[_type == "proveedor" && category == $category] | order(order asc, _createdAt desc) {
@@ -31,7 +32,8 @@ export const PROVIDE_BY_CATEGORY_QUERY = `*[_type == "proveedor" && category == 
   openingHours,
   location,
   mapEmbedUrl,
-  order
+  order,
+  rating
 }`
 
 export const PROVIDE_BY_SLUG_QUERY = `*[_type == "proveedor" && slug.current == $slug][0] {
@@ -48,7 +50,8 @@ export const PROVIDE_BY_SLUG_QUERY = `*[_type == "proveedor" && slug.current == 
   openingHours,
   location,
   mapEmbedUrl,
-  order
+  order,
+  rating
 }`
 
 export async function getAllProveedores() {

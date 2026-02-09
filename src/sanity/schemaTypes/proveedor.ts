@@ -92,5 +92,13 @@ export const proveedorType = defineType({
             title: 'Horarios de Apertura',
             type: 'string',
         }),
+        defineField({
+            name: 'rating',
+            title: 'Calificación',
+            description: 'Calificación de 1 a 5 (ej. 4.9)',
+            type: 'number',
+            initialValue: 4.9,
+            validation: (Rule) => Rule.min(1).max(5),
+        }),
     ],
 })

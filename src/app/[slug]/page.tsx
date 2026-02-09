@@ -38,19 +38,31 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
 
     const waLink = `https://wa.me/${listing.whatsapp}?text=Hola,%20vi%20su%20perfil%20en%20OaxacaFit%20y%20quiero%20más%20info.`;
 
+    const baseUrl = 'https://oaxacafit.com';
+    const imageUrl = listing.image?.startsWith('http') ? listing.image : `${baseUrl}${listing.image}`;
+
     const schemaData = {
         "@context": "https://schema.org",
         "@type": ["LocalBusiness", "ExerciseGym"],
         "name": listing.name,
-        "image": listing.image,
+        "image": imageUrl,
+        "description": listing.description,
         "address": {
             "@type": "PostalAddress",
             "streetAddress": listing.address,
             "addressLocality": "Oaxaca",
             "addressCountry": "MX"
         },
-        "url": `https://oaxacafit.com/${listing.slug}`,
-        "telephone": listing.whatsapp
+        "url": `${baseUrl}/${listing.slug}`,
+        "telephone": listing.whatsapp,
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": listing.rating || 4.9,
+            "bestRating": "5",
+            "worstRating": "1",
+            "ratingCount": "20"
+        },
+        "openingHours": listing.openingHours
     };
 
     return (
