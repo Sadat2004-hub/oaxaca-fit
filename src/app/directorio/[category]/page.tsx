@@ -8,7 +8,7 @@ import ListingCard from '@/components/ListingCard';
 export const revalidate = 60;
 
 // Map slugs to display names and icons
-const categoryInfo: Record<string, { name: string; icon: string; description: string; sanityValue: string }> = {
+const categoryInfo: Record<string, { name: string; icon: string; description: string; sanityValue: string; subcategories?: { name: string; slug: string; icon: string }[] }> = {
     'crossfit': {
         name: 'CrossFit & Funcional',
         icon: '🏋️',
@@ -16,29 +16,120 @@ const categoryInfo: Record<string, { name: string; icon: string; description: st
         sanityValue: 'crossfit'
     },
     'gimnasios': {
-        name: 'Gimnasios Clásicos',
+        name: 'Gimnasios Pesas',
         icon: '💪',
         description: 'Equipamiento completo para tu rutina de musculación y cardio.',
         sanityValue: 'gym'
     },
-    'yoga': {
-        name: 'Yoga & Pilates',
+    'balance': {
+        name: 'Balance',
         icon: '🧘',
-        description: 'Conecta cuerpo y mente en los mejores estudios de la ciudad.',
-        sanityValue: 'yoga'
-    },
-    'nutricion': {
-        name: 'Nutrición & Suplementos',
-        icon: '🥗',
-        description: 'Expertos que te ayudarán a alcanzar tus metas alimenticias.',
-        sanityValue: 'nutricion'
+        description: 'Estudios dedicados al equilibrio, flexibilidad y bienestar integral.',
+        sanityValue: 'balance',
+        subcategories: [
+            { name: 'Yoga', slug: 'yoga', icon: '🧘' },
+            { name: 'Pilates', slug: 'pilates', icon: '🌀' },
+            { name: 'Barre', slug: 'barre', icon: '🩰' },
+            { name: 'GAP', slug: 'gap', icon: '🍑' }
+        ]
     },
     'artes-marciales': {
         name: 'Artes Marciales',
         icon: '🥋',
-        description: 'Disciplina, defensa personal y acondicionamiento físico.',
-        sanityValue: 'boxing'
-    }
+        description: 'Disciplinas de combate: Golpeo, Agarre, Lucha e Híbridas.',
+        sanityValue: 'artes-marciales',
+        subcategories: [
+            { name: 'Golpeo', slug: 'golpeo', icon: '👊' },
+            { name: 'Agarre/Lucha', slug: 'agarre', icon: '🤼' },
+            { name: 'Híbridas', slug: 'hibridas', icon: '⚔️' }
+        ]
+    },
+    'boxeo': {
+        name: 'Boxeo',
+        icon: '🥊',
+        description: 'Entrenamiento de boxeo recreativo y competitivo.',
+        sanityValue: 'boxeo'
+    },
+    'raqueta': {
+        name: 'Deportes Raqueta',
+        icon: '🎾',
+        description: 'Tenis, Pádel, Squash y más en las mejores canchas de Oaxaca.',
+        sanityValue: 'raqueta',
+        subcategories: [
+            { name: 'Tenis', slug: 'tenis', icon: '🎾' },
+            { name: 'Pádel', slug: 'padel', icon: '🎾' },
+            { name: 'Squash', slug: 'squash', icon: '🎾' }
+        ]
+    },
+    'acuaticos': {
+        name: 'Acuáticos',
+        icon: '🏊',
+        description: 'Natación y actividades acuáticas para todas las edades.',
+        sanityValue: 'acuaticos'
+    },
+    'baile': {
+        name: 'Baile y Danza',
+        icon: '💃',
+        description: 'Zumba, Pole Dance, Salsa y diversos ritmos para mover el cuerpo.',
+        sanityValue: 'baile',
+        subcategories: [
+            { name: 'Zumba/Latinos', slug: 'zumba', icon: '💃' },
+            { name: 'Pole Dance', slug: 'pole-dance', icon: '💃' },
+            { name: 'Salsa/Bachata', slug: 'salsa', icon: '💃' }
+        ]
+    },
+    'aventura': {
+        name: 'Aventura',
+        icon: '🚵',
+        description: 'Ciclismo, Senderismo, Escalada y Running al aire libre.',
+        sanityValue: 'aventura',
+        subcategories: [
+            { name: 'Ciclismo', slug: 'ciclismo', icon: '🚲' },
+            { name: 'Senderismo', slug: 'senderismo', icon: '🥾' },
+            { name: 'Escalada', slug: 'escalada', icon: '🧗' },
+            { name: 'Running', slug: 'running', icon: '🏃' }
+        ]
+    },
+    'equipo': {
+        name: 'Deportes de Equipo',
+        icon: '⚽',
+        description: 'Futbol, Basquetball y Voleibol en ligas y centros deportivos.',
+        sanityValue: 'equipo',
+        subcategories: [
+            { name: 'Ver Todos', slug: 'deportes-equipo-sub', icon: '⚽' }
+        ]
+    },
+    'salud': {
+        name: 'Salud Deportiva',
+        icon: '🏥',
+        description: 'Fisioterapia, Masajes y Nutrición para optimizar tu rendimiento.',
+        sanityValue: 'salud',
+        subcategories: [
+            { name: 'Fisio/Masajes', slug: 'fisioterapia', icon: '🏥' },
+            { name: 'Nutrición', slug: 'nutricion', icon: '🥗' }
+        ]
+    },
+    // Subcategory mappings to handle their specific pages
+    'yoga': { name: 'Yoga', icon: '🧘', description: 'Estudios de Yoga en Oaxaca.', sanityValue: 'yoga' },
+    'pilates': { name: 'Pilates', icon: '🌀', description: 'Estudios de Pilates en Oaxaca.', sanityValue: 'pilates' },
+    'barre': { name: 'Barre', icon: '🩰', description: 'Centros de Barre en Oaxaca.', sanityValue: 'barre' },
+    'gap': { name: 'GAP', icon: '🍑', description: 'Clases de Glúteos, Abdomen y Pierna.', sanityValue: 'gap' },
+    'golpeo': { name: 'Golpeo', icon: '👊', description: 'Kickboxing, Karate, Taekwondo y más.', sanityValue: 'golpeo' },
+    'agarre': { name: 'Agarre/Lucha', icon: '🤼', description: 'Judo, BJJ, Lucha Libre y más.', sanityValue: 'agarre' },
+    'hibridas': { name: 'Híbridas', icon: '⚔️', description: 'MMA y Krav Maga.', sanityValue: 'hibridas' },
+    'tenis': { name: 'Tenis', icon: '🎾', description: 'Canchas y clases de Tenis.', sanityValue: 'tenis' },
+    'padel': { name: 'Pádel', icon: '🎾', description: 'Canchas y clases de Pádel.', sanityValue: 'padel' },
+    'squash': { name: 'Squash', icon: '🎾', description: 'Canchas y clases de Squash.', sanityValue: 'squash' },
+    'zumba': { name: 'Zumba/Latinos', icon: '💃', description: 'Zumba y Ritmos Latinos.', sanityValue: 'zumba' },
+    'pole-dance': { name: 'Pole Dance', icon: '💃', description: 'Pole Dance y Telas Aéreas.', sanityValue: 'pole-dance' },
+    'salsa': { name: 'Salsa/Bachata', icon: '💃', description: 'Clases de Salsa y Bachata.', sanityValue: 'salsa' },
+    'ciclismo': { name: 'Ciclismo', icon: '🚲', description: 'Ciclismo de Ruta y Montaña/MTB.', sanityValue: 'ciclismo' },
+    'senderismo': { name: 'Senderismo', icon: '🥾', description: 'Clubes de caminata y Trekking.', sanityValue: 'senderismo' },
+    'escalada': { name: 'Escalada', icon: '🧗', description: 'Rocódromos y salidas a roca.', sanityValue: 'escalada' },
+    'running': { name: 'Running', icon: '🏃', description: 'Clubes de corredores.', sanityValue: 'running' },
+    'deportes-equipo-sub': { name: 'Deportes Equipo', icon: '⚽', description: 'Futbol, Basquet y Voleibol.', sanityValue: 'deportes-equipo-sub' },
+    'fisioterapia': { name: 'Fisio & Masajes', icon: '🏥', description: 'Fisioterapia y masajes deportivos.', sanityValue: 'fisioterapia' },
+    'nutricion': { name: 'Nutrición', icon: '🥗', description: 'Especialistas en nutrición deportiva.', sanityValue: 'nutricion' }
 };
 
 export async function generateStaticParams() {
@@ -116,6 +207,41 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                     }}>
                         {info.description}
                     </p>
+
+                    {/* Subcategories Navigation */}
+                    {info.subcategories && (
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            gap: '15px',
+                            marginTop: '30px',
+                            flexWrap: 'wrap'
+                        }}>
+                            {info.subcategories.map(sub => (
+                                <Link
+                                    key={sub.slug}
+                                    href={`/directorio/${sub.slug}`}
+                                    style={{
+                                        background: 'white',
+                                        padding: '10px 20px',
+                                        borderRadius: '50px',
+                                        border: '1px solid var(--border)',
+                                        textDecoration: 'none',
+                                        color: 'var(--text)',
+                                        fontWeight: '600',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '8px',
+                                        boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
+                                        transition: 'all 0.3s ease'
+                                    }}
+                                    className="subcategory-tag"
+                                >
+                                    <span>{sub.icon}</span> {sub.name}
+                                </Link>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </section>
 

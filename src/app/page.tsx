@@ -6,10 +6,16 @@ export const revalidate = 60; // Revalidar cada minuto
 
 const categories = [
   { name: 'CrossFit & Funcional', icon: '🏋️', slug: 'crossfit' },
-  { name: 'Gimnasios Clásicos', icon: '💪', slug: 'gimnasios' },
-  { name: 'Yoga & Pilates', icon: '🧘', slug: 'yoga' },
-  { name: 'Nutrición & Suplementos', icon: '🥗', slug: 'nutricion' },
+  { name: 'Gimnasios Pesas', icon: '💪', slug: 'gimnasios' },
+  { name: 'Balance', icon: '🧘', slug: 'balance' },
   { name: 'Artes Marciales', icon: '🥋', slug: 'artes-marciales' },
+  { name: 'Boxeo', icon: '🥊', slug: 'boxeo' },
+  { name: 'Deportes Raqueta', icon: '🎾', slug: 'raqueta' },
+  { name: 'Acuáticos', icon: '🏊', slug: 'acuaticos' },
+  { name: 'Baile y Danza', icon: '💃', slug: 'baile' },
+  { name: 'Aventura', icon: '🚵', slug: 'aventura' },
+  { name: 'Deportes Equipo', icon: '⚽', slug: 'equipo' },
+  { name: 'Salud Deportiva', icon: '🏥', slug: 'salud' },
 ];
 
 export default async function Home() {
