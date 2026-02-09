@@ -58,7 +58,7 @@ export const proveedorType = defineType({
                     { title: '🎾 Pádel', value: 'padel' },
                     { title: '🎾 Squash', value: 'squash' },
                     { title: '🎾 Frontón/Frontenis', value: 'fronton' },
-                    { title: '🎾 Pickleball', value: 'pickleball' },
+                    { title: '🎾 Pickeball', value: 'pickleball' },
                     { title: '🏓 Pinpon', value: 'pinpon' },
                     { title: '🏸 Bádminton', value: 'badminton' },
                     { title: '🏊 Acuáticos', value: 'acuaticos' },

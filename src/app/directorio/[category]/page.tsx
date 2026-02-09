@@ -64,8 +64,8 @@ const categoryInfo: Record<string, { name: string; icon: string; description: st
             { name: 'Tenis', slug: 'tenis', icon: '🎾' },
             { name: 'Pádel', slug: 'padel', icon: '🎾' },
             { name: 'Squash', slug: 'squash', icon: '🎾' },
-            { name: 'Frontón', slug: 'fronton', icon: '🎾' },
-            { name: 'Pickleball', slug: 'pickleball', icon: '🎾' },
+            { name: 'Frontón/Frontenis', slug: 'fronton', icon: '🎾' },
+            { name: 'Pickeball', slug: 'pickleball', icon: '🎾' },
             { name: 'Pinpon', slug: 'pinpon', icon: '🏓' },
             { name: 'Bádminton', slug: 'badminton', icon: '🏸' }
         ]
@@ -137,8 +137,8 @@ const categoryInfo: Record<string, { name: string; icon: string; description: st
     'tenis': { name: 'Tenis', icon: '🎾', description: 'Canchas y clases de Tenis.', sanityValue: 'tenis' },
     'padel': { name: 'Pádel', icon: '🎾', description: 'Canchas y clases de Pádel.', sanityValue: 'padel' },
     'squash': { name: 'Squash', icon: '🎾', description: 'Canchas y clases de Squash.', sanityValue: 'squash' },
-    'fronton': { name: 'Frontón', icon: '🎾', description: 'Canchas de Frontón y Frontenis.', sanityValue: 'fronton' },
-    'pickleball': { name: 'Pickleball', icon: '🎾', description: 'Canchas de Pickleball en Oaxaca.', sanityValue: 'pickleball' },
+    'fronton': { name: 'Frontón/Frontenis', icon: '🎾', description: 'Canchas de Frontón y Frontenis.', sanityValue: 'fronton' },
+    'pickleball': { name: 'Pickeball', icon: '🎾', description: 'Canchas de Pickeball en Oaxaca.', sanityValue: 'pickleball' },
     'pinpon': { name: 'Pinpon', icon: '🏓', description: 'Mesas y clubes de Pinpon/Tenis de Mesa.', sanityValue: 'pinpon' },
     'badminton': { name: 'Bádminton', icon: '🏸', description: 'Pistas y clubes de Bádminton.', sanityValue: 'badminton' },
     'zumba': { name: 'Zumba', icon: '💃', description: 'Clases de Zumba Fitness.', sanityValue: 'zumba' },

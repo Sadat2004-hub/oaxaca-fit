@@ -22,7 +22,7 @@ export const categoryMapping: Record<string, { label: string; slug: string }> = 
     'padel': { label: 'Pádel', slug: 'padel' },
     'squash': { label: 'Squash', slug: 'squash' },
     'fronton': { label: 'Frontón/Frontenis', slug: 'fronton' },
-    'pickleball': { label: 'Pickleball', slug: 'pickleball' },
+    'pickleball': { label: 'Pickeball', slug: 'pickleball' },
     'pinpon': { label: 'Pinpon', slug: 'pinpon' },
     'badminton': { label: 'Bádminton', slug: 'badminton' },
     'zumba': { label: 'Zumba', slug: 'zumba' },
