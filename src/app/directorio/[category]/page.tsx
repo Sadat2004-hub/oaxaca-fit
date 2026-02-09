@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { listings } from '@/data/listings';
 import { notFound } from 'next/navigation';
 import { getProveedoresByCategory } from '@/lib/sanity.queries';
 import { getCategoryData } from '@/lib/utils';
@@ -243,29 +242,17 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
 
     // 1. Obtener los de Sanity (Fuente de verdad actualizable)
     const sanityListings = await getProveedoresByCategory(info.sanityValue);
-    const sanitySlugs = new Set((sanityListings || []).map((s: any) => s.slug));
 
-    // 2. Obtener los locales, pero SOLAMENTE si no están ya en Sanity
-    const localListings = listings
-        .filter(item => item.categorySlug === category && !sanitySlugs.has(item.slug))
-        .map(l => ({
-            ...l,
-            categoryLabel: l.category
-        }));
-
-    // 3. Mezclarlos
-    const allListings = [
-        ...(sanityListings || []).map((s: any) => {
-            const categories = Array.isArray(s.category) ? s.category : [s.category];
-            const catData = getCategoryData(categories[0]);
-            return {
-                ...s,
-                categorySlug: catData.slug,
-                categoryLabel: catData.label
-            };
-        }),
-        ...localListings
-    ].sort((a, b) => {
+    // 2. Procesar los resultados (Fuente única de verdad)
+    const allListings = (sanityListings || []).map((s: any) => {
+        const categories = Array.isArray(s.category) ? s.category : [s.category];
+        const catData = getCategoryData(categories[0]);
+        return {
+            ...s,
+            categorySlug: catData.slug,
+            categoryLabel: catData.label
+        };
+    }).sort((a: any, b: any) => {
         const orderA = a.order ?? 100;
         const orderB = b.order ?? 100;
         if (orderA !== orderB) return orderA - orderB;
@@ -348,7 +335,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                         gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
                         gap: '30px'
                     }}>
-                        {allListings.map((listing) => (
+                        {allListings.map((listing: any) => (
                             <ListingCard key={listing.id} listing={listing} />
                         ))}
                     </div>

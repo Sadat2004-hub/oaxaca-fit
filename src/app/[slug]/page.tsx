@@ -1,4 +1,3 @@
-import { listings } from '@/data/listings';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -9,30 +8,21 @@ export const revalidate = 60;
 
 export async function generateStaticParams() {
     const sanityProveedores = await getAllProveedores();
-    const sanitySlugs = sanityProveedores.map((p: any) => ({ slug: p.slug }));
-    const localSlugs = listings.map((l) => ({ slug: l.slug }));
-
-    return [...localSlugs, ...sanitySlugs];
+    return sanityProveedores.map((p: any) => ({ slug: p.slug }));
 }
 
 export default async function ListingPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
 
-    let listing = listings.find((l) => l.slug === slug);
+    const sanityListing = await getProveedorBySlug(slug);
+    if (!sanityListing) return notFound();
 
-    if (!listing) {
-        const sanityListing = await getProveedorBySlug(slug);
-        if (sanityListing) {
-            const catData = getCategoryData(sanityListing.category);
-            listing = {
-                ...sanityListing,
-                categoryLabel: catData.label,
-                categorySlug: catData.slug
-            };
-        }
-    }
-
-    if (!listing) return notFound();
+    const catData = getCategoryData(sanityListing.category);
+    const listing = {
+        ...sanityListing,
+        categoryLabel: catData.label,
+        categorySlug: catData.slug
+    };
 
     // Health check for Map URL: If the user pasted the full iframe code, extract only the src
     const mapUrl = listing.mapEmbedUrl?.includes('<iframe')
@@ -70,7 +60,8 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
     };
 
     const categories = Array.isArray(listing.category) ? listing.category : [listing.category];
-    const catData = getCategoryData(categories[0]);
+    // Ya tenemos catData del bloque anterior
+    // const catData = getCategoryData(categories[0]);
 
     return (
         <div className="animate-fade-in">
