@@ -27,7 +27,12 @@ export default async function DirectoryPage() {
             };
         }),
         ...localListings
-    ].sort((a, b) => a.name.localeCompare(b.name));
+    ].sort((a, b) => {
+        const orderA = a.order ?? 100;
+        const orderB = b.order ?? 100;
+        if (orderA !== orderB) return orderA - orderB;
+        return a.name.localeCompare(b.name);
+    });
 
     return (
         <div className="container" style={{ padding: '60px 20px' }}>

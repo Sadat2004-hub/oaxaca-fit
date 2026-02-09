@@ -1,6 +1,6 @@
 import { client } from './sanity'
 
-export const PROVIDE_ALL_QUERY = `*[_type == "proveedor"] | order(_createdAt desc) {
+export const PROVIDE_ALL_QUERY = `*[_type == "proveedor"] | order(order asc, _createdAt desc) {
   "id": _id,
   name,
   "slug": slug.current,
@@ -13,10 +13,11 @@ export const PROVIDE_ALL_QUERY = `*[_type == "proveedor"] | order(_createdAt des
   services,
   openingHours,
   location,
-  mapEmbedUrl
+  mapEmbedUrl,
+  order
 }`
 
-export const PROVIDE_BY_CATEGORY_QUERY = `*[_type == "proveedor" && category == $category] | order(_createdAt desc) {
+export const PROVIDE_BY_CATEGORY_QUERY = `*[_type == "proveedor" && category == $category] | order(order asc, _createdAt desc) {
   "id": _id,
   name,
   "slug": slug.current,
@@ -29,7 +30,8 @@ export const PROVIDE_BY_CATEGORY_QUERY = `*[_type == "proveedor" && category == 
   services,
   openingHours,
   location,
-  mapEmbedUrl
+  mapEmbedUrl,
+  order
 }`
 
 export const PROVIDE_BY_SLUG_QUERY = `*[_type == "proveedor" && slug.current == $slug][0] {
@@ -45,17 +47,18 @@ export const PROVIDE_BY_SLUG_QUERY = `*[_type == "proveedor" && slug.current == 
   services,
   openingHours,
   location,
-  mapEmbedUrl
+  mapEmbedUrl,
+  order
 }`
 
 export async function getAllProveedores() {
-    return await client.fetch(PROVIDE_ALL_QUERY)
+  return await client.fetch(PROVIDE_ALL_QUERY)
 }
 
 export async function getProveedoresByCategory(category: string) {
-    return await client.fetch(PROVIDE_BY_CATEGORY_QUERY, { category })
+  return await client.fetch(PROVIDE_BY_CATEGORY_QUERY, { category })
 }
 
 export async function getProveedorBySlug(slug: string) {
-    return await client.fetch(PROVIDE_BY_SLUG_QUERY, { slug })
+  return await client.fetch(PROVIDE_BY_SLUG_QUERY, { slug })
 }

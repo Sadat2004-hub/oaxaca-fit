@@ -6,6 +6,13 @@ export const proveedorType = defineType({
     type: 'document',
     fields: [
         defineField({
+            name: 'order',
+            title: 'Orden de aparición',
+            description: 'Número para ordenar (ej. 1 para aparecer primero, 2 segundo...)',
+            type: 'number',
+            initialValue: 100,
+        }),
+        defineField({
             name: 'name',
             title: 'Nombre del Negocio',
             type: 'string',
