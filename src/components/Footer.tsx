@@ -36,7 +36,6 @@ export default function Footer() {
                     <div>
                         <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px' }}>
                             <li><Link href="/directorio" style={{ color: '#fff' }}>Directorio</Link></li>
-                            <li><Link href="/blog" style={{ color: '#fff' }}>Blog</Link></li>
                             <li><Link href="/sumar-negocio" style={{ color: '#fff' }}>Sumar mi Negocio</Link></li>
                         </ul>
                     </div>

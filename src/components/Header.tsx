@@ -29,20 +29,7 @@ export default function Header() {
           <span style={{ fontSize: '0.7em', fontWeight: '600', color: 'black' }}>com</span>
         </Link>
         <nav style={{ display: 'flex', gap: '24px', fontWeight: '500', alignItems: 'center' }}>
-          <Link
-            href="/blog"
-            style={{
-              background: 'var(--primary)',
-              color: 'white',
-              padding: '10px 25px',
-              borderRadius: '50px',
-              fontWeight: '600',
-              boxShadow: '0 4px 15px rgba(255, 107, 0, 0.3)',
-              transition: 'transform 0.2s',
-            }}
-          >
-            Blog
-          </Link>
+          {/* Blog removed */}
         </nav>
       </div>
     </header>
