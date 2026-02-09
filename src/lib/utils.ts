@@ -17,7 +17,14 @@ export const categoryMapping: Record<string, { label: string; slug: string }> = 
     'jiu-jitsu': { label: 'Jiu-Jitsu Brasileño', slug: 'jiu-jitsu' },
     'lucha-libre': { label: 'Lucha Libre', slug: 'lucha-libre' },
     'mma': { label: 'MMA', slug: 'mma' },
-    'krav-maga': { label: 'Krav Maga', slug: 'krav-maga' }
+    'krav-maga': { label: 'Krav Maga', slug: 'krav-maga' },
+    'tenis': { label: 'Tenis', slug: 'tenis' },
+    'padel': { label: 'Pádel', slug: 'padel' },
+    'squash': { label: 'Squash', slug: 'squash' },
+    'fronton': { label: 'Frontón/Frontenis', slug: 'fronton' },
+    'pickleball': { label: 'Pickleball', slug: 'pickleball' },
+    'pinpon': { label: 'Pinpon', slug: 'pinpon' },
+    'badminton': { label: 'Bádminton', slug: 'badminton' }
 };
 
 export function getCategoryData(sanityValue: string) {

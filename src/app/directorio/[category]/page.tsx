@@ -57,13 +57,17 @@ const categoryInfo: Record<string, { name: string; icon: string; description: st
     },
     'raqueta': {
         name: 'Deportes Raqueta',
-        icon: '🎾',
+        icon: '🏸',
         description: 'Tenis, Pádel, Squash y más en las mejores canchas de Oaxaca.',
         sanityValue: 'raqueta',
         subcategories: [
             { name: 'Tenis', slug: 'tenis', icon: '🎾' },
             { name: 'Pádel', slug: 'padel', icon: '🎾' },
-            { name: 'Squash', slug: 'squash', icon: '🎾' }
+            { name: 'Squash', slug: 'squash', icon: '🎾' },
+            { name: 'Frontón', slug: 'fronton', icon: '🎾' },
+            { name: 'Pickleball', slug: 'pickleball', icon: '🎾' },
+            { name: 'Pinpon', slug: 'pinpon', icon: '🏓' },
+            { name: 'Bádminton', slug: 'badminton', icon: '🏸' }
         ]
     },
     'acuaticos': {
@@ -130,6 +134,10 @@ const categoryInfo: Record<string, { name: string; icon: string; description: st
     'tenis': { name: 'Tenis', icon: '🎾', description: 'Canchas y clases de Tenis.', sanityValue: 'tenis' },
     'padel': { name: 'Pádel', icon: '🎾', description: 'Canchas y clases de Pádel.', sanityValue: 'padel' },
     'squash': { name: 'Squash', icon: '🎾', description: 'Canchas y clases de Squash.', sanityValue: 'squash' },
+    'fronton': { name: 'Frontón', icon: '🎾', description: 'Canchas de Frontón y Frontenis.', sanityValue: 'fronton' },
+    'pickleball': { name: 'Pickleball', icon: '🎾', description: 'Canchas de Pickleball en Oaxaca.', sanityValue: 'pickleball' },
+    'pinpon': { name: 'Pinpon', icon: '🏓', description: 'Mesas y clubes de Pinpon/Tenis de Mesa.', sanityValue: 'pinpon' },
+    'badminton': { name: 'Bádminton', icon: '🏸', description: 'Pistas y clubes de Bádminton.', sanityValue: 'badminton' },
     'zumba': { name: 'Zumba/Latinos', icon: '💃', description: 'Zumba y Ritmos Latinos.', sanityValue: 'zumba' },
     'pole-dance': { name: 'Pole Dance', icon: '💃', description: 'Pole Dance y Telas Aéreas.', sanityValue: 'pole-dance' },
     'salsa': { name: 'Salsa/Bachata', icon: '💃', description: 'Clases de Salsa y Bachata.', sanityValue: 'salsa' },

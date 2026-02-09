@@ -10,7 +10,7 @@ const categories = [
   { name: 'Balance', icon: '🧘', slug: 'balance' },
   { name: 'Artes Marciales', icon: '🥋', slug: 'artes-marciales' },
   { name: 'Boxeo', icon: '🥊', slug: 'boxeo' },
-  { name: 'Deportes Raqueta', icon: '🎾', slug: 'raqueta' },
+  { name: 'Deportes Raqueta', icon: '🏸', slug: 'raqueta' },
   { name: 'Acuáticos', icon: '🏊', slug: 'acuaticos' },
   { name: 'Baile y Danza', icon: '💃', slug: 'baile' },
   { name: 'Aventura', icon: '🚵', slug: 'aventura' },
