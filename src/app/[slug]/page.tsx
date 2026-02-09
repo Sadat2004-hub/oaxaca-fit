@@ -283,13 +283,6 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                 </div>
             </section>
 
-            {/* Floating WhatsApp Button (Mobile Only) */}
-            <div className="mobile-wa-fab">
-                <Link href={waLink} target="_blank">
-                    📲 Contactar por WhatsApp
-                </Link>
-            </div>
-
             <style>{`
                 .carousel-container::-webkit-scrollbar {
                   display: none;
