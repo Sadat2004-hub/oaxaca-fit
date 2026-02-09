@@ -34,6 +34,11 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
 
     if (!listing) return notFound();
 
+    // Health check for Map URL: If the user pasted the full iframe code, extract only the src
+    const mapUrl = listing.mapEmbedUrl?.includes('<iframe')
+        ? listing.mapEmbedUrl.match(/src="([^"]+)"/)?.[1] || listing.mapEmbedUrl
+        : listing.mapEmbedUrl;
+
     const waLink = `https://wa.me/${listing.whatsapp}?text=Hola,%20vi%20su%20perfil%20en%20OaxacaFit%20y%20quiero%20más%20info.`;
 
     const baseUrl = 'https://oaxacafit.com';
@@ -60,7 +65,8 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
             "worstRating": "1",
             "ratingCount": "20"
         },
-        "openingHours": listing.openingHours
+        "openingHours": listing.openingHours,
+        "hasMap": mapUrl
     };
 
     const catData = getCategoryData(listing.category);
@@ -260,9 +266,9 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                             boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
                             border: '4px solid white'
                         }}>
-                            {listing.mapEmbedUrl ? (
+                            {mapUrl ? (
                                 <iframe
-                                    src={listing.mapEmbedUrl}
+                                    src={mapUrl}
                                     width="100%"
                                     height="100%"
                                     style={{ border: 0 }}
