@@ -331,21 +331,21 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                         boxShadow: '0 20px 50px rgba(255, 111, 0, 0.2)',
                         textAlign: 'center'
                     }}>
-                        <div style={{ marginBottom: '60px' }}>
-                            <h2 style={{
-                                fontSize: '0.9rem',
-                                color: 'rgba(255,255,255,0.8)',
-                                fontWeight: '800',
-                                textTransform: 'uppercase',
-                                letterSpacing: '3px',
-                                marginBottom: '15px'
-                            }}>Oaxaca Fit</h2>
-                            <h3 style={{
-                                fontSize: '2.5rem',
-                                fontWeight: '900',
+                        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '60px' }}>
+                            <div style={{
+                                background: 'rgba(255, 255, 255, 0.15)',
+                                padding: '12px 35px',
+                                borderRadius: '50px',
+                                border: '1px solid rgba(255, 255, 255, 0.3)',
                                 color: 'white',
-                                letterSpacing: '-1.5px'
-                            }}>PATROCINADORES</h3>
+                                fontSize: '0.9rem',
+                                fontWeight: '900',
+                                textTransform: 'uppercase',
+                                letterSpacing: '2px',
+                                backdropFilter: 'blur(5px)'
+                            }}>
+                                Patrocinadores
+                            </div>
                         </div>
 
                         <div style={{
