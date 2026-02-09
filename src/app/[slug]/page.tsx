@@ -178,9 +178,9 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
 
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
                             {/* Ubicación */}
-                            <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
+                            <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
                                 <div style={{
-                                    fontSize: '2rem',
+                                    fontSize: '1.5rem',
                                     background: 'white',
                                     width: '60px',
                                     height: '60px',
@@ -188,18 +188,20 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    boxShadow: '0 10px 20px rgba(0,0,0,0.05)'
+                                    boxShadow: '0 10px 20px rgba(0,0,0,0.05)',
+                                    flexShrink: 0,
+                                    border: '1px solid #eee'
                                 }}>📍</div>
                                 <div>
-                                    <h4 style={{ fontSize: '0.9rem', color: 'var(--primary)', textTransform: 'uppercase', fontWeight: '800', marginBottom: '5px' }}>Ubicación</h4>
-                                    <p style={{ fontSize: '1.2rem', fontWeight: '600' }}>{listing.address}</p>
+                                    <h4 style={{ fontSize: '0.8rem', color: 'var(--primary)', textTransform: 'uppercase', fontWeight: '800', marginBottom: '2px', letterSpacing: '1px' }}>Ubicación</h4>
+                                    <p style={{ fontSize: '1.1rem', fontWeight: '600', color: 'var(--text)' }}>{listing.address}</p>
                                 </div>
                             </div>
 
                             {/* Teléfono */}
-                            <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
+                            <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
                                 <div style={{
-                                    fontSize: '2rem',
+                                    fontSize: '1.5rem',
                                     background: 'white',
                                     width: '60px',
                                     height: '60px',
@@ -207,18 +209,20 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    boxShadow: '0 10px 20px rgba(0,0,0,0.05)'
+                                    boxShadow: '0 10px 20px rgba(0,0,0,0.05)',
+                                    flexShrink: 0,
+                                    border: '1px solid #eee'
                                 }}>📞</div>
                                 <div>
-                                    <h4 style={{ fontSize: '0.9rem', color: 'var(--primary)', textTransform: 'uppercase', fontWeight: '800', marginBottom: '5px' }}>Teléfono</h4>
-                                    <p style={{ fontSize: '1.2rem', fontWeight: '600' }}>{listing.whatsapp}</p>
+                                    <h4 style={{ fontSize: '0.8rem', color: 'var(--primary)', textTransform: 'uppercase', fontWeight: '800', marginBottom: '2px', letterSpacing: '1px' }}>Teléfono</h4>
+                                    <p style={{ fontSize: '1.1rem', fontWeight: '600', color: 'var(--text)' }}>{listing.whatsapp}</p>
                                 </div>
                             </div>
 
-                            {/* Horarios (Added for completeness) */}
-                            <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
+                            {/* Horarios */}
+                            <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
                                 <div style={{
-                                    fontSize: '2rem',
+                                    fontSize: '1.5rem',
                                     background: 'white',
                                     width: '60px',
                                     height: '60px',
@@ -226,11 +230,13 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    boxShadow: '0 10px 20px rgba(0,0,0,0.05)'
+                                    boxShadow: '0 10px 20px rgba(0,0,0,0.05)',
+                                    flexShrink: 0,
+                                    border: '1px solid #eee'
                                 }}>🕒</div>
                                 <div>
-                                    <h4 style={{ fontSize: '0.9rem', color: 'var(--primary)', textTransform: 'uppercase', fontWeight: '800', marginBottom: '5px' }}>Horarios</h4>
-                                    <p style={{ fontSize: '1.2rem', fontWeight: '600' }}>{listing.openingHours || 'Consultar'}</p>
+                                    <h4 style={{ fontSize: '0.8rem', color: 'var(--primary)', textTransform: 'uppercase', fontWeight: '800', marginBottom: '2px', letterSpacing: '1px' }}>Horarios</h4>
+                                    <p style={{ fontSize: '1.1rem', fontWeight: '600', color: 'var(--text)' }}>{listing.openingHours || 'Consultar horario'}</p>
                                 </div>
                             </div>
 
