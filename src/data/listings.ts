@@ -10,7 +10,7 @@ export type Listing = {
     gallery: string[];
     description: string;
     services: string[];
-    openingHours: string;
+    openingHours: string | { days: string; hours: string }[];
     location: { lat: number; lng: number };
     mapEmbedUrl?: string;
     website?: string;
@@ -38,7 +38,10 @@ export const listings: Listing[] = [
         ],
         description: 'En Black CF nos enfocamos en el CrossFit real. Comunidad, fuerza y resultados. Visita nuestro sitio web para más información.',
         services: ['CrossFit', 'Entrenamiento Funcional'],
-        openingHours: 'Lun-Vie: 6:00 - 22:00, Sáb: 7:00 - 10:00',
+        openingHours: [
+            { days: 'Lunes a Viernes', hours: '6:00 - 22:00' },
+            { days: 'Sábado', hours: '7:00 - 10:00' }
+        ],
         location: { lat: 17.061, lng: -96.725 },
         rating: 4.7,
         mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15256.540787947439!2d-96.74222661713857!3d17.066038365205042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c72246c6a89f79%3A0x15d0aa61fb67ff3e!2sBLACK%20CF%20Crossfit!5e0!3m2!1ses!2smx!4v1770242508167!5m2!1ses!2smx'
@@ -62,7 +65,10 @@ export const listings: Listing[] = [
         ],
         description: 'Centro líder en Oaxaca con calificación 4.9. Ofrecemos CrossFit puro, entrenamiento funcional, yoga y asesoría nutricional. ¡Únete a la comunidad más fuerte!',
         services: ['CrossFit', 'Funcional', 'Yoga', 'Nutrición', 'Regaderas'],
-        openingHours: 'Lun-Vie: 6:00 - 22:00, Sáb: 8:00 - 14:00',
+        openingHours: [
+            { days: 'Lunes a Viernes', hours: '6:00 - 22:00' },
+            { days: 'Sábado', hours: '8:00 - 14:00' }
+        ],
         location: { lat: 17.065, lng: -96.723 },
         mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3814.135610885082!2d-96.73707672540839!3d17.066018111984825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c723e2f3a446e9%3A0xf2b8db02961a7099!2sTwister%20Crossfit%20Gym!5e0!3m2!1ses!2smx!4v1770127895943!5m2!1ses!2smx'
     },
@@ -85,7 +91,10 @@ export const listings: Listing[] = [
         ],
         description: 'Centro de entrenamiento funcional y CrossFit en el centro de Oaxaca. Clases dinámicas y comunidad motivadora.',
         services: ['CrossFit', 'Entrenamiento Funcional'],
-        openingHours: 'Lun-Vie: 6:00 - 13:00, 16:00 - 22:00, Sáb: 8:00 - 12:00',
+        openingHours: [
+            { days: 'Lunes a Viernes', hours: '6:00 - 13:00, 16:00 - 22:00' },
+            { days: 'Sábado', hours: '8:00 - 12:00' }
+        ],
         location: { lat: 17.058, lng: -96.726 },
         rating: 5.0,
         mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15256.540787947439!2d-96.74222661713857!3d17.066038365205042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c723147c316a11%3A0x286b4bf9c9216538!2sFearless%20Cross%20-%20Training!5e0!3m2!1ses!2smx!4v1770242977490!5m2!1ses!2smx'
@@ -108,7 +117,10 @@ export const listings: Listing[] = [
         ],
         description: 'Estudio especializado en entrenamiento funcional y CrossFit. Instalaciones de primer nivel y ambiente motivador para alcanzar tus objetivos.',
         services: ['CrossFit', 'Entrenamiento Funcional'],
-        openingHours: 'Lun-Vie: 6:00 - 22:00, Sáb: 7:00 - 18:00',
+        openingHours: [
+            { days: 'Lunes a Viernes', hours: '6:00 - 22:00' },
+            { days: 'Sábado', hours: '7:00 - 18:00' }
+        ],
         location: { lat: 17.036, lng: -96.732 },
         rating: 4.2,
         mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15256.540787947439!2d-96.74222661713857!3d17.066038365205042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c723ffac7eb783%3A0xfd8c89ea17c520ad!2sEstudio%20de%20entrenamiento%20Athletic!5e0!3m2!1ses!2smx!4v1770243302832!5m2!1ses!2smx'
@@ -127,7 +139,10 @@ export const listings: Listing[] = [
         ],
         description: 'Comunidad unida y entrenadores dedicados. Mezclamos cardio, levantamiento de pesas y gimnasia para resultados reales.',
         services: ['CrossFit', 'Levantamiento de Pesas', 'Cardio', 'Estacionamiento'],
-        openingHours: 'Lun-Vie: 6:00 - 21:00, Sáb: 9:00 - 13:00',
+        openingHours: [
+            { days: 'Lunes a Viernes', hours: '6:00 - 21:00' },
+            { days: 'Sábado', hours: '9:00 - 13:00' }
+        ],
         location: { lat: 17.078, lng: -96.710 }
     },
     {
@@ -142,7 +157,9 @@ export const listings: Listing[] = [
         gallery: [],
         description: 'Especialistas en alta intensidad y pérdida de peso. Instalaciones amplias para tu entrenamiento funcional.',
         services: ['Funcional', 'Pesas', 'Nutrición Deportiva'],
-        openingHours: 'Lun-Vie: 6:00 - 22:00',
+        openingHours: [
+            { days: 'Lunes a Viernes', hours: '6:00 - 22:00' }
+        ],
         location: { lat: 17.130, lng: -96.760 }
     },
     {
@@ -172,7 +189,9 @@ export const listings: Listing[] = [
         gallery: [],
         description: 'Entrenamiento rudo y efectivo. Boxeo, funcional y pesas con asesoría de nutricionista deportivo.',
         services: ['Boxeo', 'Funcional', 'Nutricionista', 'Pesas'],
-        openingHours: 'Lun-Sáb: 7:00 - 21:00',
+        openingHours: [
+            { days: 'Lunes a Sábado', hours: '7:00 - 21:00' }
+        ],
         location: { lat: 17.140, lng: -96.770 }
     }
 ];
