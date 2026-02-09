@@ -1,18 +1,28 @@
-
 import { listings } from '@/data/listings';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-
-export async function generateStaticParams() {
-    return listings.map((l) => ({
-        slug: l.slug,
-    }));
-}
+import { getProveedorBySlug } from '@/lib/sanity.queries';
 
 export default async function ListingPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
-    const listing = listings.find(l => l.slug === slug);
+
+    // 1. Intenta buscar en los locales (archivo antiguo)
+    let listing: any = listings.find(l => l.slug === slug);
+
+    // 2. Si no está ahí, búscalo en Sanity (el nuevo Admin)
+    if (!listing) {
+        const sanityListing = await getProveedorBySlug(slug);
+        if (sanityListing) {
+            listing = {
+                ...sanityListing,
+                categoryLabel: sanityListing.category === 'gym' ? 'Gimnasios Clásicos' :
+                    sanityListing.category === 'crossfit' ? 'CrossFit & Funcional' :
+                        sanityListing.category === 'yoga' ? 'Yoga & Pilates' :
+                            sanityListing.category
+            };
+        }
+    }
 
     if (!listing) return notFound();
 
@@ -43,12 +53,12 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
             {/* Header Info */}
             <section style={{ padding: '40px 0', borderBottom: '1px solid var(--border)' }}>
                 <div className="container">
-                    <Link href={`/directorio/${listing.categorySlug}`} style={{ color: 'var(--text-light)', fontSize: '14px', marginBottom: '10px', display: 'block' }}>
-                        &larr; Volver a {listing.category}
+                    <Link href={`/directorio/${listing.categorySlug || listing.category}`} style={{ color: 'var(--text-light)', fontSize: '14px', marginBottom: '10px', display: 'block' }}>
+                        &larr; Volver a {listing.categoryLabel || listing.category}
                     </Link>
                     <h1 style={{ fontSize: '3rem', fontWeight: '900', marginBottom: '10px' }}>{listing.name}</h1>
                     <p style={{ fontSize: '1.2rem', color: 'var(--text-light)' }}>
-                        📍 {listing.address} | <span style={{ color: 'var(--primary)', fontWeight: '600' }}>{listing.category}</span>
+                        📍 {listing.address} | <span style={{ color: 'var(--primary)', fontWeight: '600' }}>{listing.categoryLabel || listing.category}</span>
                     </p>
                 </div>
             </section>
@@ -58,32 +68,34 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                 <div className="listing-content-container" style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
 
                     {/* Gallery Carousel */}
-                    <div>
-                        <h2 style={{ marginBottom: '20px' }}>Galería</h2>
-                        <div style={{
-                            display: 'flex',
-                            gap: '15px',
-                            overflowX: 'auto',
-                            paddingBottom: '15px',
-                            scrollSnapType: 'x mandatory',
-                            msOverflowStyle: 'none',
-                            scrollbarWidth: 'none'
-                        }} className="carousel-container">
-                            {listing.gallery.map((img, i) => (
-                                <div key={i} style={{
-                                    flex: '0 0 80%',
-                                    position: 'relative',
-                                    height: '400px',
-                                    borderRadius: 'var(--radius)',
-                                    overflow: 'hidden',
-                                    scrollSnapAlign: 'start'
-                                }}>
-                                    <Image src={img} alt={`${listing.name} ${i}`} fill style={{ objectFit: 'cover' }} />
-                                </div>
-                            ))}
+                    {listing.gallery && listing.gallery.length > 0 && (
+                        <div>
+                            <h2 style={{ marginBottom: '20px' }}>Galería</h2>
+                            <div style={{
+                                display: 'flex',
+                                gap: '15px',
+                                overflowX: 'auto',
+                                paddingBottom: '15px',
+                                scrollSnapType: 'x mandatory',
+                                msOverflowStyle: 'none',
+                                scrollbarWidth: 'none'
+                            }} className="carousel-container">
+                                {listing.gallery.map((img: string, i: number) => (
+                                    <div key={i} style={{
+                                        flex: '0 0 80%',
+                                        position: 'relative',
+                                        height: '400px',
+                                        borderRadius: 'var(--radius)',
+                                        overflow: 'hidden',
+                                        scrollSnapAlign: 'start'
+                                    }}>
+                                        <Image src={img} alt={`${listing.name} ${i}`} fill style={{ objectFit: 'cover' }} />
+                                    </div>
+                                ))}
+                            </div>
+                            <p style={{ fontSize: '12px', color: 'var(--text-light)', marginTop: '5px' }}>&larr; Desliza para ver más fotos &rarr;</p>
                         </div>
-                        <p style={{ fontSize: '12px', color: 'var(--text-light)', marginTop: '5px' }}>&larr; Desliza para ver más fotos &rarr;</p>
-                    </div>
+                    )}
 
                     {/* Description */}
                     <div>
@@ -92,18 +104,20 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                     </div>
 
                     {/* Services */}
-                    <div>
-                        <h2 style={{ marginBottom: '20px' }}>Servicios y Comodidades</h2>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '15px' }}>
-                            {listing.services.map(s => (
-                                <span key={s} className="service-tag">
-                                    <span style={{ color: 'var(--primary)' }}>✔</span> {s}
-                                </span>
-                            ))}
+                    {listing.services && listing.services.length > 0 && (
+                        <div>
+                            <h2 style={{ marginBottom: '20px' }}>Servicios y Comodidades</h2>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '15px' }}>
+                                {listing.services.map((s: string) => (
+                                    <span key={s} className="service-tag">
+                                        <span style={{ color: 'var(--primary)' }}>✔</span> {s}
+                                    </span>
+                                ))}
+                            </div>
                         </div>
-                    </div>
+                    )}
 
-                    {/* Map Placeholder */}
+                    {/* Map */}
                     <div>
                         <h2 style={{ marginBottom: '20px' }}>Ubicación</h2>
                         <div style={{
@@ -147,7 +161,7 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                         boxShadow: 'var(--shadow)'
                     }}>
                         <h3 style={{ marginBottom: '20px' }}>Horarios</h3>
-                        <p style={{ marginBottom: '30px', color: 'var(--text-light)' }}>{listing.openingHours}</p>
+                        <p style={{ marginBottom: '30px', color: 'var(--text-light)' }}>{listing.openingHours || 'Consultar horario'}</p>
 
                         {listing.website && (
                             <Link href={listing.website} target="_blank" style={{
@@ -201,7 +215,7 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                         <div style={{ background: 'white', padding: '20px', borderRadius: 'var(--radius)', border: '1px solid var(--border)' }}>
                             <Link href={`/${listing.slug}`}>
                                 <h4 style={{ color: 'var(--primary)' }}>{listing.name}</h4>
-                                <p style={{ fontSize: '12px', color: 'var(--text-light)' }}>{listing.category}</p>
+                                <p style={{ fontSize: '12px', color: 'var(--text-light)' }}>{listing.categoryLabel || listing.category}</p>
                             </Link>
                         </div>
                     </div>

@@ -1,39 +1,44 @@
-
 import Link from 'next/link';
 import Image from 'next/image';
 import { listings } from '@/data/listings';
 import { notFound } from 'next/navigation';
+import { getProveedoresByCategory } from '@/lib/sanity.queries';
 
 // Map slugs to display names and icons
-const categoryInfo: Record<string, { name: string; icon: string; description: string }> = {
+const categoryInfo: Record<string, { name: string; icon: string; description: string; sanityValue: string }> = {
     'crossfit': {
         name: 'CrossFit & Funcional',
         icon: '🏋️',
-        description: 'Centros de alto rendimiento para superar tus límites.'
+        description: 'Centros de alto rendimiento para superar tus límites.',
+        sanityValue: 'crossfit'
     },
     'gimnasios': {
         name: 'Gimnasios Clásicos',
         icon: '💪',
-        description: 'Equipamiento completo para tu rutina de musculación y cardio.'
+        description: 'Equipamiento completo para tu rutina de musculación y cardio.',
+        sanityValue: 'gym'
     },
     'yoga': {
         name: 'Yoga & Pilates',
         icon: '🧘',
-        description: 'Conecta cuerpo y mente en los mejores estudios de la ciudad.'
+        description: 'Conecta cuerpo y mente en los mejores estudios de la ciudad.',
+        sanityValue: 'yoga'
     },
     'nutricion': {
         name: 'Nutrición & Suplementos',
         icon: '🥗',
-        description: 'Expertos que te ayudarán a alcanzar tus metas alimenticias.'
+        description: 'Expertos que te ayudarán a alcanzar tus metas alimenticias.',
+        sanityValue: 'nutricion'
     },
     'artes-marciales': {
         name: 'Artes Marciales',
         icon: '🥋',
-        description: 'Disciplina, defensa personal y acondicionamiento físico.'
+        description: 'Disciplina, defensa personal y acondicionamiento físico.',
+        sanityValue: 'boxing'
     }
 };
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
     return Object.keys(categoryInfo).map((category) => ({
         category,
     }));
@@ -44,12 +49,23 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
     const info = categoryInfo[category];
 
     if (!info) {
-        // If category doesn't exist in our map, 404
         notFound();
     }
 
-    // Filter listings by category slug
-    const categoryListings = listings.filter(item => item.categorySlug === category);
+    // 1. Obtener los locales
+    const localListings = listings.filter(item => item.categorySlug === category);
+
+    // 2. Obtener los de Sanity
+    const sanityListings = await getProveedoresByCategory(info.sanityValue);
+
+    // 3. Mezclarlos
+    const allListings = [
+        ...localListings,
+        ...(sanityListings || []).map((s: any) => ({
+            ...s,
+            categorySlug: category
+        }))
+    ];
 
     return (
         <div style={{ minHeight: '100vh', paddingBottom: '80px' }}>
@@ -86,13 +102,13 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
 
             {/* Listings Grid */}
             <section className="container" style={{ marginTop: '40px' }}>
-                {categoryListings.length > 0 ? (
+                {allListings.length > 0 ? (
                     <div style={{
                         display: 'grid',
                         gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
                         gap: '30px'
                     }}>
-                        {categoryListings.map((listing) => (
+                        {allListings.map((listing) => (
                             <Link
                                 href={`/${listing.slug}`}
                                 key={listing.id}
@@ -109,12 +125,16 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                                 }}
                             >
                                 <div style={{ position: 'relative', height: '220px', width: '100%' }}>
-                                    <Image
-                                        src={listing.image}
-                                        alt={listing.name}
-                                        fill
-                                        style={{ objectFit: 'cover' }}
-                                    />
+                                    {listing.image ? (
+                                        <Image
+                                            src={listing.image}
+                                            alt={listing.name}
+                                            fill
+                                            style={{ objectFit: 'cover' }}
+                                        />
+                                    ) : (
+                                        <div style={{ width: '100%', height: '100%', background: '#eee', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>🏋️</div>
+                                    )}
                                     <div style={{
                                         position: 'absolute',
                                         top: '15px',
@@ -142,7 +162,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                                         lineHeight: '1.5',
                                         flex: 1
                                     }}>
-                                        {listing.address.split(',')[0]}...
+                                        {listing.address?.split(',')[0]}...
                                     </p>
 
                                     <div style={{
