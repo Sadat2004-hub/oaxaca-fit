@@ -78,7 +78,12 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
             };
         }),
         ...localListings
-    ];
+    ].sort((a, b) => {
+        const orderA = a.order ?? 100;
+        const orderB = b.order ?? 100;
+        if (orderA !== orderB) return orderA - orderB;
+        return a.name.localeCompare(b.name);
+    });
 
     return (
         <div style={{ minHeight: '100vh', paddingBottom: '80px' }}>
