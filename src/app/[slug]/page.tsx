@@ -175,7 +175,7 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
             {/* 3. Contact Section (Light Gray Background) */}
             <section style={{
                 background: '#f8f9fa',
-                padding: '80px 0',
+                padding: '40px 0 60px', /* Reduced top padding */
                 borderTop: '1px solid #eee'
             }}>
                 <div className="container">
@@ -242,19 +242,19 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                             <Link href={waLink} target="_blank" style={{
                                 background: '#25D366',
                                 color: 'white',
-                                display: 'inline-flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                padding: '18px 30px',
+                                display: 'block',
+                                padding: '20px 30px',
                                 borderRadius: '50px',
-                                fontSize: '1.1rem',
-                                fontWeight: '800',
+                                fontSize: '1rem',
+                                fontWeight: '900',
                                 textAlign: 'center',
                                 marginTop: '10px',
                                 textDecoration: 'none',
-                                boxShadow: '0 10px 20px rgba(37, 211, 102, 0.2)'
+                                boxShadow: '0 10px 20px rgba(37, 211, 102, 0.2)',
+                                textTransform: 'uppercase',
+                                whiteSpace: 'nowrap'
                             }}>
-                                📲 Contactar por WhatsApp
+                                CONTACTAR POR WHATSAPP
                             </Link>
                         </div>
 
@@ -319,22 +319,22 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
             </section>
 
             {/* Sponsors Section */}
-            <section style={{ padding: '80px 0', borderTop: '1px solid var(--border)', background: 'var(--primary)' }}>
+            <section style={{ padding: '60px 0', borderTop: '1px solid var(--border)', background: 'var(--primary)' }}>
                 <div className="container" style={{
-                    background: 'white',
+                    background: 'var(--primary)', /* Matching background */
                     padding: '60px 40px',
                     borderRadius: '40px',
                     textAlign: 'center',
-                    boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
+                    boxShadow: '0 20px 40px rgba(0,0,0,0.15)', /* Stronger shadow for orange bg */
+                    border: '1px solid rgba(255,255,255,0.2)' /* Light border to match card style */
                 }}>
-                    <h2 style={{ marginBottom: '40px', color: 'var(--primary)', fontSize: '2.5rem', fontWeight: '900' }}>Patrocinadores</h2>
+                    <h2 style={{ marginBottom: '40px', color: 'white', fontSize: '2.5rem', fontWeight: '900' }}>Patrocinadores</h2>
                     <div style={{
                         display: 'flex',
                         flexWrap: 'wrap',
                         justifyContent: 'center',
                         alignItems: 'center',
                         gap: '60px',
-                        opacity: 0.8
                     }}>
                         <div style={{ fontSize: '2.5rem', fontWeight: '900', color: '#000', letterSpacing: '-2px' }}>NIKE</div>
                         <div style={{ fontSize: '2.5rem', fontWeight: '900', color: '#000', fontStyle: 'italic' }}>adidas</div>
