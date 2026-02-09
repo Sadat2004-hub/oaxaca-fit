@@ -105,10 +105,12 @@ const categoryInfo: Record<string, { name: string; icon: string; description: st
     'equipo': {
         name: 'Deportes de Equipo',
         icon: '⚽',
-        description: 'Futbol, Basquetball y Voleibol en ligas y centros deportivos.',
+        description: 'Futbol, Basquetball y Voleibol en ligas y centros deportivos de Oaxaca.',
         sanityValue: 'equipo',
         subcategories: [
-            { name: 'Ver Todos', slug: 'deportes-equipo-sub', icon: '⚽' }
+            { name: 'Futbol', slug: 'futbol', icon: '⚽' },
+            { name: 'Basquetball', slug: 'basquetball', icon: '🏀' },
+            { name: 'Voleibol', slug: 'voleibol', icon: '🏐' }
         ]
     },
     'salud': {
@@ -151,7 +153,9 @@ const categoryInfo: Record<string, { name: string; icon: string; description: st
     'senderismo': { name: 'Senderismo', icon: '🥾', description: 'Clubes de caminata y Trekking.', sanityValue: 'senderismo' },
     'escalada': { name: 'Escalada', icon: '🧗', description: 'Rocódromos y salidas a roca.', sanityValue: 'escalada' },
     'running': { name: 'Running', icon: '🏃', description: 'Clubes de corredores.', sanityValue: 'running' },
-    'deportes-equipo-sub': { name: 'Deportes Equipo', icon: '⚽', description: 'Futbol, Basquet y Voleibol.', sanityValue: 'deportes-equipo-sub' },
+    'futbol': { name: 'Futbol', icon: '⚽', description: 'Canchas y ligas de Futbol.', sanityValue: 'futbol' },
+    'basquetball': { name: 'Basquetball', icon: '🏀', description: 'Canchas y ligas de Basquetball.', sanityValue: 'basquetball' },
+    'voleibol': { name: 'Voleibol', icon: '🏐', description: 'Canchas y ligas de Voleibol.', sanityValue: 'voleibol' },
     'fisioterapia': { name: 'Fisio & Masajes', icon: '🏥', description: 'Fisioterapia y masajes deportivos.', sanityValue: 'fisioterapia' },
     'nutricion': { name: 'Nutrición', icon: '🥗', description: 'Especialistas en nutrición deportiva.', sanityValue: 'nutricion' }
 };

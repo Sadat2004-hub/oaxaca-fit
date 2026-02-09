@@ -30,7 +30,10 @@ export const categoryMapping: Record<string, { label: string; slug: string }> = 
     'pole-dance': { label: 'Pole Dance', slug: 'pole-dance' },
     'aerial': { label: 'Aerial (Telas)', slug: 'aerial' },
     'salsa': { label: 'Salsa', slug: 'salsa' },
-    'bachata': { label: 'Bachata', slug: 'bachata' }
+    'bachata': { label: 'Bachata', slug: 'bachata' },
+    'futbol': { label: 'Futbol', slug: 'futbol' },
+    'basquetball': { label: 'Basquetball', slug: 'basquetball' },
+    'voleibol': { label: 'Voleibol', slug: 'voleibol' }
 };
 
 export function getCategoryData(sanityValue: string) {
