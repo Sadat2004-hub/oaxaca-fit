@@ -73,120 +73,196 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
             />
 
             {/* Header Info */}
-            <section style={{ padding: '40px 0', borderBottom: '1px solid var(--border)' }}>
+            <section style={{ padding: '40px 0 20px' }}>
                 <div className="container">
-                    <Link href={`/directorio/${listing.categorySlug || listing.category}`} style={{ color: 'var(--text-light)', fontSize: '14px', marginBottom: '10px', display: 'block' }}>
+                    <Link href={`/directorio/${listing.categorySlug || listing.category}`} style={{ color: 'var(--text-light)', fontSize: '14px', marginBottom: '15px', display: 'block' }}>
                         &larr; Volver a {listing.categoryLabel || listing.category}
                     </Link>
-                    <h1 style={{ fontSize: '3rem', fontWeight: '900', marginBottom: '10px' }}>{listing.name}</h1>
-                    <p style={{ fontSize: '1.2rem', color: 'var(--text-light)', marginBottom: '15px' }}>
-                        📍 {listing.address} | <span style={{ color: 'var(--primary)', fontWeight: '600' }}>{listing.categoryLabel || listing.category}</span>
-                    </p>
-
-                    {/* Quick Contact - Mobile Only */}
-                    <div className="mobile-only-contact" style={{ display: 'none', flexDirection: 'column', gap: '15px', marginTop: '25px' }}>
-                        <Link href={waLink} target="_blank" style={{
-                            background: '#25D366',
-                            color: 'white',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            padding: '16px',
-                            borderRadius: '12px',
-                            fontSize: '1.1rem',
-                            fontWeight: '800',
-                            textAlign: 'center',
-                            boxShadow: '0 10px 20px rgba(37, 211, 102, 0.2)'
-                        }}>
-                            📲 Contactar por WhatsApp
-                        </Link>
-                        <div style={{ color: 'var(--text-light)', fontSize: '1rem', fontWeight: '500' }}>
-                            🕒 Horarios: {listing.openingHours || 'Consultar horario'}
-                        </div>
-                    </div>
+                    <h1 style={{ fontSize: '3.5rem', fontWeight: '900', marginBottom: '10px', letterSpacing: '-1.5px' }}>{listing.name}</h1>
+                    <span style={{
+                        background: 'var(--primary)',
+                        color: 'white',
+                        padding: '5px 15px',
+                        borderRadius: '50px',
+                        fontSize: '0.9rem',
+                        fontWeight: '700'
+                    }}>
+                        {listing.categoryLabel || listing.category}
+                    </span>
                 </div>
             </section>
 
-            <div className="container listing-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '40px', padding: '40px 0' }}>
-                {/* Main Content */}
-                <div className="listing-content-container" style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
-
-                    {/* Gallery Carousel */}
+            <div className="container" style={{ paddingBottom: '60px' }}>
+                {/* 1. Gallery Carousel */}
+                <div style={{ marginBottom: '60px' }}>
                     {listing.gallery && listing.gallery.length > 0 ? (
+                        <div style={{
+                            display: 'flex',
+                            gap: '20px',
+                            overflowX: 'auto',
+                            paddingBottom: '20px',
+                            scrollSnapType: 'x mandatory',
+                            msOverflowStyle: 'none',
+                            scrollbarWidth: 'none'
+                        }} className="carousel-container">
+                            {listing.gallery.map((img: string, i: number) => (
+                                <div key={i} style={{
+                                    flex: '0 0 85%',
+                                    position: 'relative',
+                                    height: '500px',
+                                    borderRadius: '30px',
+                                    overflow: 'hidden',
+                                    scrollSnapAlign: 'start',
+                                    boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
+                                }}>
+                                    <Image src={img} alt={`${listing.name} ${i}`} fill style={{ objectFit: 'cover' }} />
+                                </div>
+                            ))}
+                        </div>
+                    ) : listing.image && (
+                        <div style={{
+                            position: 'relative',
+                            height: '500px',
+                            borderRadius: '30px',
+                            overflow: 'hidden',
+                            boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
+                        }}>
+                            <Image src={listing.image} alt={listing.name} fill style={{ objectFit: 'cover' }} />
+                        </div>
+                    )}
+                </div>
+
+                {/* 2. AboutUs & Services Grid */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', marginBottom: '60px' }} className="details-grid">
+                    <div>
+                        <h2 style={{ fontSize: '2rem', fontWeight: '800', marginBottom: '20px' }}>Nosotros</h2>
+                        <p style={{ fontSize: '1.2rem', lineHeight: '1.8', color: '#444', whiteSpace: 'pre-line' }}>{listing.description}</p>
+                    </div>
+
+                    {listing.services && listing.services.length > 0 && (
                         <div>
-                            <h2 style={{ marginBottom: '20px' }}>Galería</h2>
-                            <div style={{
-                                display: 'flex',
-                                gap: '15px',
-                                overflowX: 'auto',
-                                paddingBottom: '15px',
-                                scrollSnapType: 'x mandatory',
-                                msOverflowStyle: 'none',
-                                scrollbarWidth: 'none'
-                            }} className="carousel-container">
-                                {listing.gallery.map((img: string, i: number) => (
-                                    <div key={i} style={{
-                                        flex: '0 0 80%',
-                                        position: 'relative',
-                                        height: '400px',
-                                        borderRadius: 'var(--radius)',
-                                        overflow: 'hidden',
-                                        scrollSnapAlign: 'start'
+                            <h2 style={{ fontSize: '2rem', fontWeight: '800', marginBottom: '20px' }}>Servicios</h2>
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
+                                {listing.services.map((s: string) => (
+                                    <div key={s} style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '10px',
+                                        fontSize: '1.1rem',
+                                        color: '#555'
                                     }}>
-                                        <Image src={img} alt={`${listing.name} ${i}`} fill style={{ objectFit: 'cover' }} />
+                                        <span style={{ color: 'var(--primary)', fontSize: '1.3rem' }}>★</span> {s}
                                     </div>
                                 ))}
                             </div>
-                            <p style={{ fontSize: '12px', color: 'var(--text-light)', marginTop: '5px' }}>&larr; Desliza para ver más fotos &rarr;</p>
                         </div>
-                    ) : listing.image && (
-                        <div>
-                            <h2 style={{ marginBottom: '20px' }}>Imagen</h2>
-                            <div style={{
-                                position: 'relative',
-                                height: '450px',
-                                borderRadius: 'var(--radius)',
-                                overflow: 'hidden'
+                    )}
+                </div>
+            </div>
+
+            {/* 3. Contact Section (Light Gray Background) */}
+            <section style={{
+                background: '#f8f9fa',
+                padding: '80px 0',
+                borderTop: '1px solid #eee'
+            }}>
+                <div className="container">
+                    <h2 style={{ fontSize: '2.5rem', fontWeight: '900', marginBottom: '50px', textAlign: 'center' }}>Contacto</h2>
+
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: '1fr 1fr',
+                        gap: '40px',
+                        alignItems: 'start'
+                    }} className="contact-grid">
+
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+                            {/* Ubicación */}
+                            <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
+                                <div style={{
+                                    fontSize: '2rem',
+                                    background: 'white',
+                                    width: '60px',
+                                    height: '60px',
+                                    borderRadius: '50%',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    boxShadow: '0 10px 20px rgba(0,0,0,0.05)'
+                                }}>📍</div>
+                                <div>
+                                    <h4 style={{ fontSize: '0.9rem', color: 'var(--primary)', textTransform: 'uppercase', fontWeight: '800', marginBottom: '5px' }}>Ubicación</h4>
+                                    <p style={{ fontSize: '1.2rem', fontWeight: '600' }}>{listing.address}</p>
+                                </div>
+                            </div>
+
+                            {/* Teléfono */}
+                            <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
+                                <div style={{
+                                    fontSize: '2rem',
+                                    background: 'white',
+                                    width: '60px',
+                                    height: '60px',
+                                    borderRadius: '50%',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    boxShadow: '0 10px 20px rgba(0,0,0,0.05)'
+                                }}>📞</div>
+                                <div>
+                                    <h4 style={{ fontSize: '0.9rem', color: 'var(--primary)', textTransform: 'uppercase', fontWeight: '800', marginBottom: '5px' }}>Teléfono</h4>
+                                    <p style={{ fontSize: '1.2rem', fontWeight: '600' }}>{listing.whatsapp}</p>
+                                </div>
+                            </div>
+
+                            {/* Horarios (Added for completeness) */}
+                            <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
+                                <div style={{
+                                    fontSize: '2rem',
+                                    background: 'white',
+                                    width: '60px',
+                                    height: '60px',
+                                    borderRadius: '50%',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    boxShadow: '0 10px 20px rgba(0,0,0,0.05)'
+                                }}>🕒</div>
+                                <div>
+                                    <h4 style={{ fontSize: '0.9rem', color: 'var(--primary)', textTransform: 'uppercase', fontWeight: '800', marginBottom: '5px' }}>Horarios</h4>
+                                    <p style={{ fontSize: '1.2rem', fontWeight: '600' }}>{listing.openingHours || 'Consultar'}</p>
+                                </div>
+                            </div>
+
+                            {/* WhatsApp Button */}
+                            <Link href={waLink} target="_blank" style={{
+                                background: '#25D366',
+                                color: 'white',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                padding: '20px 40px',
+                                borderRadius: '50px',
+                                fontSize: '1.2rem',
+                                fontWeight: '800',
+                                textAlign: 'center',
+                                marginTop: '20px',
+                                textDecoration: 'none',
+                                boxShadow: '0 10px 20px rgba(37, 211, 102, 0.2)'
                             }}>
-                                <Image src={listing.image} alt={listing.name} fill style={{ objectFit: 'cover' }} />
-                            </div>
+                                📲 Contactar por WhatsApp
+                            </Link>
                         </div>
-                    )}
 
-                    {/* Description */}
-                    <div>
-                        <h2 style={{ marginBottom: '20px' }}>Sobre nosotros</h2>
-                        <p style={{ fontSize: '1.1rem', whiteSpace: 'pre-line' }}>{listing.description}</p>
-                    </div>
-
-                    {/* Services */}
-                    {listing.services && listing.services.length > 0 && (
-                        <div>
-                            <h2 style={{ marginBottom: '20px' }}>Servicios y Comodidades</h2>
-                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '15px' }}>
-                                {listing.services.map((s: string) => (
-                                    <span key={s} className="service-tag">
-                                        <span style={{ color: 'var(--primary)' }}>✔</span> {s}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Map */}
-                    <div>
-                        <h2 style={{ marginBottom: '20px' }}>Ubicación</h2>
+                        {/* Map */}
                         <div style={{
                             width: '100%',
-                            height: '400px',
+                            height: '450px',
                             background: '#eee',
-                            borderRadius: 'var(--radius)',
+                            borderRadius: '30px',
                             overflow: 'hidden',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            color: '#666',
-                            border: '1px solid var(--border)'
+                            boxShadow: '0 20px 40px rgba(0,0,0,0.05)',
+                            border: '4px solid white'
                         }}>
                             {listing.mapEmbedUrl ? (
                                 <iframe
@@ -196,78 +272,14 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                                     style={{ border: 0 }}
                                     allowFullScreen={true}
                                     loading="lazy"
-                                    referrerPolicy="no-referrer-when-downgrade"
                                 />
                             ) : (
-                                <span>[📍 Mapa no disponible]</span>
+                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#999' }}>📍 Mapa no disponible</div>
                             )}
                         </div>
                     </div>
                 </div>
-
-                {/* Sidebar */}
-                <aside className="listing-sidebar" style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
-                    <div className="sidebar-container" style={{
-                        padding: '30px',
-                        background: 'var(--surface)',
-                        borderRadius: 'var(--radius)',
-                        border: '1px solid var(--border)',
-                        position: 'sticky',
-                        top: '120px',
-                        boxShadow: 'var(--shadow)'
-                    }}>
-                        <div className="sidebar-desktop-info">
-                            <h3 style={{ marginBottom: '20px' }}>Horarios</h3>
-                            <p style={{ marginBottom: '30px', color: 'var(--text-light)' }}>{listing.openingHours || 'Consultar horario'}</p>
-                        </div>
-
-                        {listing.website && (
-                            <div className="sidebar-desktop-info">
-                                <Link href={listing.website} target="_blank" style={{
-                                    background: 'white',
-                                    color: 'var(--text)',
-                                    border: '2px solid var(--border)',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    padding: '15px',
-                                    borderRadius: 'var(--radius)',
-                                    fontSize: '1rem',
-                                    fontWeight: '700',
-                                    textAlign: 'center',
-                                    marginBottom: '15px'
-                                }}>
-                                    🌐 Visitar Sitio Web
-                                </Link>
-                            </div>
-                        )}
-
-                        <div className="sidebar-desktop-info">
-                            <Link href={waLink} target="_blank" style={{
-                                background: '#25D366',
-                                color: 'white',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                padding: '18px',
-                                borderRadius: 'var(--radius)',
-                                fontSize: '1.1rem',
-                                fontWeight: '800',
-                                textAlign: 'center',
-                                boxShadow: '0 10px 20px rgba(37, 211, 102, 0.2)'
-                            }}>
-                                📲 Contactar por WhatsApp
-                            </Link>
-                        </div>
-
-                        <div style={{ marginTop: '20px', textAlign: 'center' }}>
-                            <Link href="/sumar-negocio" style={{ fontSize: '13px', color: 'var(--text-light)', textDecoration: 'underline' }}>
-                                ¿Eres el dueño de este negocio? Reclama esta ficha
-                            </Link>
-                        </div>
-                    </div>
-                </aside>
-            </div>
+            </section>
 
             {/* Sponsors Section */}
             <section style={{ padding: '80px 0', borderTop: '1px solid var(--border)', background: 'var(--primary)' }}>
@@ -300,17 +312,9 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                   display: none;
                 }
                 @media (max-width: 768px) {
-                    .listing-grid {
+                    h1 { font-size: 2.5rem !important; }
+                    .details-grid, .contact-grid {
                         grid-template-columns: 1fr !important;
-                    }
-                    .listing-sidebar {
-                        order: -1;
-                    }
-                    .mobile-only-contact {
-                        display: flex !important;
-                    }
-                    .sidebar-desktop-info {
-                        display: none !important;
                     }
                 }
             `}</style>
