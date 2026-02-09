@@ -133,7 +133,7 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                 </div>
 
                 {/* 2. AboutUs & Services Grid */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', marginBottom: '60px' }} className="details-grid">
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', marginBottom: '40px' }} className="details-grid">
                     <div style={{
                         background: 'white',
                         padding: '40px',
@@ -145,7 +145,7 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                         <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: '#444', whiteSpace: 'pre-line' }}>{listing.description}</p>
                     </div>
 
-                    {listing.services && listing.services.length > 0 && (
+                    {listing.services && listing.services.length > 0 ? (
                         <div style={{
                             background: 'white',
                             padding: '40px',
@@ -168,24 +168,7 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                                 ))}
                             </div>
                         </div>
-                    )}
-                </div>
-            </div>
-
-            {/* 3. Contact Section (Light Gray Background) */}
-            <section style={{
-                background: '#f8f9fa',
-                padding: '40px 0 60px', /* Reduced top padding */
-                borderTop: '1px solid #eee'
-            }}>
-                <div className="container">
-                    <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: '1fr 1fr',
-                        gap: '40px',
-                        alignItems: 'start'
-                    }} className="contact-grid">
-
+                    ) : (
                         <div style={{
                             background: 'white',
                             padding: '40px',
@@ -193,145 +176,162 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                             boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
                             border: '1px solid #f0f0f0',
                             display: 'flex',
-                            flexDirection: 'column',
-                            gap: '30px'
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: '#999'
                         }}>
-                            <h2 style={{ fontSize: '1.8rem', fontWeight: '800', marginBottom: '10px' }}>Contacto</h2>
+                            <p>Servicios no especificados</p>
+                        </div>
+                    )}
+                </div>
 
-                            {/* Ubicación */}
-                            <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                                <div style={{
-                                    fontSize: '1.5rem',
-                                    background: '#f8f9fa',
-                                    width: '50px',
-                                    height: '50px',
-                                    borderRadius: '50%',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    flexShrink: 0,
-                                    border: '1px solid #eee'
-                                }}>📍</div>
-                                <div>
-                                    <h4 style={{ fontSize: '0.75rem', color: 'var(--primary)', textTransform: 'uppercase', fontWeight: '800', marginBottom: '2px', letterSpacing: '1px' }}>Ubicación</h4>
-                                    <p style={{ fontSize: '1rem', fontWeight: '600', color: 'var(--text)' }}>{listing.address}</p>
-                                </div>
+                {/* 3. Contact & Map/Hours Grid */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', marginBottom: '60px' }} className="details-grid">
+                    {/* Left Column: Contact info */}
+                    <div style={{
+                        background: 'white',
+                        padding: '40px',
+                        borderRadius: '30px',
+                        boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
+                        border: '1px solid #f0f0f0',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '30px'
+                    }}>
+                        <h2 style={{ fontSize: '1.8rem', fontWeight: '800', marginBottom: '10px' }}>Contacto</h2>
+
+                        {/* Ubicación */}
+                        <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+                            <div style={{
+                                fontSize: '1.5rem',
+                                background: '#f8f9fa',
+                                width: '50px',
+                                height: '50px',
+                                borderRadius: '50%',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexShrink: 0,
+                                border: '1px solid #eee'
+                            }}>📍</div>
+                            <div>
+                                <h4 style={{ fontSize: '0.75rem', color: 'var(--primary)', textTransform: 'uppercase', fontWeight: '800', marginBottom: '2px', letterSpacing: '1px' }}>Ubicación</h4>
+                                <p style={{ fontSize: '1rem', fontWeight: '600', color: 'var(--text)' }}>{listing.address}</p>
                             </div>
-
-                            {/* Teléfono */}
-                            <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                                <div style={{
-                                    fontSize: '1.5rem',
-                                    background: '#f8f9fa',
-                                    width: '50px',
-                                    height: '50px',
-                                    borderRadius: '50%',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    flexShrink: 0,
-                                    border: '1px solid #eee'
-                                }}>📞</div>
-                                <div>
-                                    <h4 style={{ fontSize: '0.75rem', color: 'var(--primary)', textTransform: 'uppercase', fontWeight: '800', marginBottom: '2px', letterSpacing: '1px' }}>Teléfono</h4>
-                                    <p style={{ fontSize: '1rem', fontWeight: '600', color: 'var(--text)' }}>{listing.whatsapp}</p>
-                                </div>
-                            </div>
-
-                            {/* WhatsApp Button */}
-                            <Link href={waLink} target="_blank" style={{
-                                background: '#25D366',
-                                color: 'white',
-                                display: 'block',
-                                padding: '20px 30px',
-                                borderRadius: '50px',
-                                fontSize: '1rem',
-                                fontWeight: '900',
-                                textAlign: 'center',
-                                marginTop: '10px',
-                                textDecoration: 'none',
-                                boxShadow: '0 10px 20px rgba(37, 211, 102, 0.2)',
-                                textTransform: 'uppercase',
-                                whiteSpace: 'nowrap'
-                            }}>
-                                CONTACTAR POR WHATSAPP
-                            </Link>
                         </div>
 
-                        {/* Map & Hours Column */}
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
-                            {/* Map Card */}
+                        {/* Teléfono */}
+                        <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
                             <div style={{
-                                width: '100%',
-                                height: '350px',
-                                background: 'white',
-                                borderRadius: '30px',
-                                overflow: 'hidden',
-                                boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
-                                border: '4px solid white'
-                            }}>
-                                {listing.mapEmbedUrl ? (
-                                    <iframe
-                                        src={listing.mapEmbedUrl}
-                                        width="100%"
-                                        height="100%"
-                                        style={{ border: 0 }}
-                                        allowFullScreen={true}
-                                        loading="lazy"
-                                    />
-                                ) : (
-                                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#999' }}>📍 Mapa no disponible</div>
-                                )}
+                                fontSize: '1.5rem',
+                                background: '#f8f9fa',
+                                width: '50px',
+                                height: '50px',
+                                borderRadius: '50%',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexShrink: 0,
+                                border: '1px solid #eee'
+                            }}>📞</div>
+                            <div>
+                                <h4 style={{ fontSize: '0.75rem', color: 'var(--primary)', textTransform: 'uppercase', fontWeight: '800', marginBottom: '2px', letterSpacing: '1px' }}>Teléfono</h4>
+                                <p style={{ fontSize: '1rem', fontWeight: '600', color: 'var(--text)' }}>{listing.whatsapp}</p>
                             </div>
+                        </div>
 
-                            {/* Hours Card (Guia Medica style) */}
-                            <div style={{
-                                background: 'white',
-                                padding: '40px',
-                                borderRadius: '30px',
-                                boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
-                                border: '1px solid #f0f0f0'
-                            }}>
-                                <h3 style={{ fontSize: '1.5rem', fontWeight: '800', marginBottom: '25px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                    <span style={{ fontSize: '1.5rem' }}>🕒</span> Horarios de Atención
-                                </h3>
-                                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                                    {listing.openingHours ? (
-                                        Array.isArray(listing.openingHours) ? (
-                                            listing.openingHours.map((item: any, idx: number) => (
-                                                <div key={idx} style={{
-                                                    display: 'flex',
-                                                    justifyContent: 'space-between',
-                                                    padding: '12px 0',
-                                                    borderBottom: '1px dashed #eee',
-                                                    fontSize: '1.1rem'
-                                                }}>
-                                                    <span style={{ fontWeight: '700', color: '#555' }}>{item.days}</span>
-                                                    <span style={{ color: 'var(--primary)', fontWeight: '800' }}>{item.hours}</span>
-                                                </div>
-                                            ))
-                                        ) : (
-                                            <div style={{
+                        {/* WhatsApp Button */}
+                        <Link href={waLink} target="_blank" style={{
+                            background: '#25D366',
+                            color: 'white',
+                            display: 'block',
+                            padding: '20px 30px',
+                            borderRadius: '50px',
+                            fontSize: '1rem',
+                            fontWeight: '900',
+                            textAlign: 'center',
+                            marginTop: '10px',
+                            textDecoration: 'none',
+                            boxShadow: '0 10px 20px rgba(37, 211, 102, 0.2)',
+                            textTransform: 'uppercase',
+                            whiteSpace: 'nowrap'
+                        }}>
+                            CONTACTAR POR WHATSAPP
+                        </Link>
+                    </div>
+
+                    {/* Right Column: Map & Hours */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
+                        {/* Map Card */}
+                        <div style={{
+                            width: '100%',
+                            height: '350px',
+                            background: 'white',
+                            borderRadius: '30px',
+                            overflow: 'hidden',
+                            boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
+                            border: '4px solid white'
+                        }}>
+                            {listing.mapEmbedUrl ? (
+                                <iframe
+                                    src={listing.mapEmbedUrl}
+                                    width="100%"
+                                    height="100%"
+                                    style={{ border: 0 }}
+                                    allowFullScreen={true}
+                                    loading="lazy"
+                                />
+                            ) : (
+                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#999' }}>📍 Mapa no disponible</div>
+                            )}
+                        </div>
+
+                        {/* Hours Card */}
+                        <div style={{
+                            background: 'white',
+                            padding: '40px',
+                            borderRadius: '30px',
+                            boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
+                            border: '1px solid #f0f0f0'
+                        }}>
+                            <h3 style={{ fontSize: '1.5rem', fontWeight: '800', marginBottom: '25px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                <span style={{ fontSize: '1.5rem' }}>🕒</span> Horarios de Atención
+                            </h3>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                {listing.openingHours ? (
+                                    Array.isArray(listing.openingHours) ? (
+                                        listing.openingHours.map((item: any, idx: number) => (
+                                            <div key={idx} style={{
                                                 display: 'flex',
                                                 justifyContent: 'space-between',
                                                 padding: '12px 0',
                                                 borderBottom: '1px dashed #eee',
                                                 fontSize: '1.1rem'
                                             }}>
-                                                <span style={{ fontWeight: '700', color: '#555' }}>Lunes a Domingo</span>
-                                                <span style={{ color: 'var(--primary)', fontWeight: '800' }}>{listing.openingHours}</span>
+                                                <span style={{ fontWeight: '700', color: '#555' }}>{item.days}</span>
+                                                <span style={{ color: 'var(--primary)', fontWeight: '800' }}>{item.hours}</span>
                                             </div>
-                                        )
+                                        ))
                                     ) : (
-                                        <p style={{ color: '#888' }}>Consultar horarios directamente con el establecimiento.</p>
-                                    )}
-                                    <p style={{ fontSize: '0.9rem', color: '#999', marginTop: '10px', fontStyle: 'italic' }}>* Los horarios pueden variar en días festivos.</p>
-                                </div>
+                                        <div style={{
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            padding: '12px 0',
+                                            borderBottom: '1px dashed #eee',
+                                            fontSize: '1.1rem'
+                                        }}>
+                                            <span style={{ fontWeight: '700', color: '#555' }}>Lunes a Domingo</span>
+                                            <span style={{ color: 'var(--primary)', fontWeight: '800' }}>{listing.openingHours}</span>
+                                        </div>
+                                    )
+                                ) : (
+                                    <p style={{ color: '#888' }}>Consultar horarios directamente con el establecimiento.</p>
+                                )}
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
             {/* Sponsors Section */}
             <section style={{ padding: '60px 0', borderTop: '1px solid var(--border)', background: 'var(--primary)' }}>
