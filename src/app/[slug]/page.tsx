@@ -321,28 +321,68 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                 </div>
             </div>
 
-            {/* Sponsors Section */}
-            <section style={{ padding: '60px 0', borderTop: '1px solid var(--border)', background: 'var(--primary)' }}>
-                <div className="container" style={{
-                    background: 'var(--primary)', /* Matching background */
-                    padding: '60px 40px',
-                    borderRadius: '40px',
-                    textAlign: 'center',
-                    boxShadow: '0 20px 40px rgba(0,0,0,0.15)', /* Stronger shadow for orange bg */
-                    border: '1px solid rgba(255,255,255,0.2)' /* Light border to match card style */
-                }}>
-                    <h2 style={{ marginBottom: '40px', color: 'white', fontSize: '2.5rem', fontWeight: '900' }}>Patrocinadores</h2>
+            {/* Recomendados Section */}
+            <section style={{ padding: '100px 0', borderTop: '1px solid #eee', background: 'white' }}>
+                <div className="container">
+                    <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+                        <h2 style={{
+                            fontSize: '0.9rem',
+                            color: 'var(--primary)',
+                            fontWeight: '800',
+                            textTransform: 'uppercase',
+                            letterSpacing: '3px',
+                            marginBottom: '15px'
+                        }}>Oaxaca Fit</h2>
+                        <h3 style={{
+                            fontSize: '2.5rem',
+                            fontWeight: '900',
+                            color: '#1a1a1a',
+                            letterSpacing: '-1.5px'
+                        }}>RECOMENDADOS</h3>
+                    </div>
+
                     <div style={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        gap: '60px',
-                    }}>
-                        <div style={{ fontSize: '2.5rem', fontWeight: '900', color: '#000', letterSpacing: '-2px' }}>NIKE</div>
-                        <div style={{ fontSize: '2.5rem', fontWeight: '900', color: '#000', fontStyle: 'italic' }}>adidas</div>
-                        <div style={{ fontSize: '2.5rem', fontWeight: '900', color: '#000' }}>PUMA</div>
-                        <div style={{ fontSize: '2.5rem', fontWeight: '700', color: '#000', letterSpacing: '4px' }}>REEBOK</div>
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                        gap: '30px'
+                    }} className="recommendations-grid">
+                        {[
+                            { name: 'NIKE', sub: 'Equipamiento Premium' },
+                            { name: 'adidas', sub: 'Calzado & Ropa', style: 'italic' },
+                            { name: 'PUMA', sub: 'Performance Fitness' },
+                            { name: 'REEBOK', sub: 'Oficial CrossFit', space: '4px' }
+                        ].map((brand, i) => (
+                            <div key={i} style={{
+                                background: 'white',
+                                padding: '50px 30px',
+                                borderRadius: '30px',
+                                textAlign: 'center',
+                                boxShadow: '0 10px 30px rgba(0,0,0,0.03)',
+                                border: '1px solid #f0f0f0',
+                                transition: 'all 0.3s ease',
+                                cursor: 'pointer'
+                            }} className="recommendation-card">
+                                <div style={{
+                                    fontSize: '2.2rem',
+                                    fontWeight: '900',
+                                    color: '#000',
+                                    letterSpacing: brand.space || '-2px',
+                                    fontStyle: brand.style || 'normal',
+                                    marginBottom: '15px'
+                                }}>
+                                    {brand.name}
+                                </div>
+                                <div style={{
+                                    fontSize: '0.85rem',
+                                    color: '#888',
+                                    fontWeight: '700',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '1px'
+                                }}>
+                                    {brand.sub}
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
@@ -351,9 +391,17 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                 .carousel-container::-webkit-scrollbar {
                   display: none;
                 }
+                .recommendation-card:hover {
+                    transform: translateY(-10px);
+                    box-shadow: 0 20px 40px rgba(0,0,0,0.08) !important;
+                    border-color: var(--primary) !important;
+                }
                 @media (max-width: 768px) {
                     h1 { font-size: 2.5rem !important; }
                     .details-grid {
+                        grid-template-columns: 1fr !important;
+                    }
+                    .recommendations-grid {
                         grid-template-columns: 1fr !important;
                     }
                 }
