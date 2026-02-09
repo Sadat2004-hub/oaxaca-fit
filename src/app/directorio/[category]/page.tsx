@@ -53,18 +53,20 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
         notFound();
     }
 
-    // 1. Obtener los locales
-    const localListings = listings.filter(item => item.categorySlug === category).map(l => ({
-        ...l,
-        categoryLabel: l.category
-    }));
-
-    // 2. Obtener los de Sanity
+    // 1. Obtener los de Sanity (Fuente de verdad actualizable)
     const sanityListings = await getProveedoresByCategory(info.sanityValue);
+    const sanitySlugs = new Set((sanityListings || []).map((s: any) => s.slug));
+
+    // 2. Obtener los locales, pero SOLAMENTE si no están ya en Sanity
+    const localListings = listings
+        .filter(item => item.categorySlug === category && !sanitySlugs.has(item.slug))
+        .map(l => ({
+            ...l,
+            categoryLabel: l.category
+        }));
 
     // 3. Mezclarlos
     const allListings = [
-        ...localListings,
         ...(sanityListings || []).map((s: any) => {
             const catData = getCategoryData(s.category);
             return {
@@ -72,7 +74,8 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                 categorySlug: catData.slug,
                 categoryLabel: catData.label
             };
-        })
+        }),
+        ...localListings
     ];
 
     return (

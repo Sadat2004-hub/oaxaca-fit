@@ -4,18 +4,20 @@ import { getCategoryData } from '@/lib/utils';
 import ListingCard from '@/components/ListingCard';
 
 export default async function DirectoryPage() {
-    // 1. Obtener los locales
-    const localListings = listings.map(l => ({
-        ...l,
-        categoryLabel: l.category
-    }));
-
-    // 2. Obtener los de Sanity
+    // 1. Obtener los de Sanity
     const sanityListings = await getAllProveedores();
+    const sanitySlugs = new Set((sanityListings || []).map((s: any) => s.slug));
+
+    // 2. Obtener los locales eliminando duplicados
+    const localListings = listings
+        .filter(l => !sanitySlugs.has(l.slug))
+        .map(l => ({
+            ...l,
+            categoryLabel: l.category
+        }));
 
     // 3. Mezclarlos
     const allListings = [
-        ...localListings,
         ...(sanityListings || []).map((s: any) => {
             const catData = getCategoryData(s.category);
             return {
@@ -23,7 +25,8 @@ export default async function DirectoryPage() {
                 categorySlug: catData.slug,
                 categoryLabel: catData.label
             };
-        })
+        }),
+        ...localListings
     ].sort((a, b) => a.name.localeCompare(b.name));
 
     return (
