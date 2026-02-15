@@ -241,7 +241,9 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
     }
 
     // 1. Obtener los de Sanity (Fuente de verdad actualizable)
-    const sanityListings = await getProveedoresByCategory(info.sanityValue);
+    // Si la categoría tiene subcategorías, las incluimos en la búsqueda
+    const searchCategories = info.subcategories?.map(s => s.slug) || [];
+    const sanityListings = await getProveedoresByCategory(info.sanityValue, searchCategories);
 
     // 2. Procesar los resultados (Fuente única de verdad)
     const allListings = (sanityListings || []).map((s: any) => {

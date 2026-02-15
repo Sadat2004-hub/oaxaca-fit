@@ -17,17 +17,30 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
     const sanityListing = await getProveedorBySlug(slug);
     if (!sanityListing) return notFound();
 
-    const catData = getCategoryData(sanityListing.category);
+    const categories = Array.isArray(sanityListing.category) ? sanityListing.category : [sanityListing.category];
+    const catData = getCategoryData(categories[0]);
     const listing = {
         ...sanityListing,
+        category: categories,
         categoryLabel: catData.label,
         categorySlug: catData.slug
     };
 
     // Health check for Map URL: If the user pasted the full iframe code, extract only the src
-    const mapUrl = listing.mapEmbedUrl?.includes('<iframe')
-        ? listing.mapEmbedUrl.match(/src="([^"]+)"/)?.[1] || listing.mapEmbedUrl
-        : listing.mapEmbedUrl;
+    let mapUrl = listing.mapEmbedUrl || '';
+    if (mapUrl.includes('<iframe')) {
+        // More robust regex to match src content based on surrounding quotes
+        const srcMatch = mapUrl.match(/src=(?:"([^"]*)"|'([^']*)')/i);
+        mapUrl = (srcMatch?.[1] || srcMatch?.[2]) || mapUrl;
+    }
+
+    // Decode common HTML entities just in case they are double-encoded
+    if (mapUrl.includes('&')) {
+        mapUrl = mapUrl
+            .replace(/&quot;/g, '"')
+            .replace(/&#39;/g, "'")
+            .replace(/&amp;/g, '&');
+    }
 
     const waLink = `https://wa.me/${listing.whatsapp}?text=Hola,%20vi%20su%20perfil%20en%20OaxacaFit%20y%20quiero%20más%20info.`;
 
@@ -59,7 +72,8 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
         "hasMap": mapUrl
     };
 
-    const categories = Array.isArray(listing.category) ? listing.category : [listing.category];
+    // Ya normalizamos categorías arriba
+    // const categories = Array.isArray(listing.category) ? listing.category : [listing.category];
     // Ya tenemos catData del bloque anterior
     // const catData = getCategoryData(categories[0]);
 
@@ -263,17 +277,44 @@ export default async function ListingPage({ params }: { params: Promise<{ slug: 
                             borderRadius: '30px',
                             overflow: 'hidden',
                             boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
-                            border: '4px solid white'
+                            border: '4px solid white',
+                            position: 'relative'
                         }}>
                             {mapUrl ? (
-                                <iframe
-                                    src={mapUrl}
-                                    width="100%"
-                                    height="100%"
-                                    style={{ border: 0 }}
-                                    allowFullScreen={true}
-                                    loading="lazy"
-                                />
+                                <>
+                                    <iframe
+                                        src={mapUrl}
+                                        width="100%"
+                                        height="100%"
+                                        style={{ border: 0 }}
+                                        allowFullScreen={true}
+                                        loading="lazy"
+                                    />
+                                    <a
+                                        href={mapUrl.replace('/embed', '/place')}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        style={{
+                                            position: 'absolute',
+                                            bottom: '15px',
+                                            right: '15px',
+                                            background: 'white',
+                                            padding: '8px 15px',
+                                            borderRadius: '50px',
+                                            fontSize: '12px',
+                                            fontWeight: '800',
+                                            color: 'var(--primary)',
+                                            boxShadow: '0 5px 15px rgba(0,0,0,0.1)',
+                                            textDecoration: 'none',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            gap: '5px',
+                                            border: '1px solid #eee'
+                                        }}
+                                    >
+                                        📍 Ver mapa
+                                    </a>
+                                </>
                             ) : (
                                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#999' }}>📍 Mapa no disponible</div>
                             )}
